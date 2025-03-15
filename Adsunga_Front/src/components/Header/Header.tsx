@@ -1,7 +1,15 @@
 import { useNavigate } from "react-router";
-
+import Logo from "../../assets/icons/IconeLogo.png";
+import { useState } from "react";
 export const Header = () => {
   const navigate = useNavigate();
+
+  const [mobileMenu, setMobileMenu] = useState<boolean>(false);
+
+  const toogleMenu = (): void => {
+    setMobileMenu(!mobileMenu);
+  };
+
   return (
     <nav className="bg-[#ffffff]">
       <div className="mx-2 lg:mx-4 md:px-2 px-4">
@@ -12,20 +20,7 @@ export const Header = () => {
                 href="#"
                 className="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900"
               >
-                <svg
-                  className="h-6 w-6 mr-1 text-blue-400"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                  />
-                </svg>
+                <img src={Logo} alt="Logo Adsunga" className="w-12 h-12" />
                 <span className="font-bold">Adsunga</span>
               </a>
             </div>
@@ -80,9 +75,9 @@ export const Header = () => {
           </div>
 
           <div className="md:hidden flex items-center">
-            <button className="mobile-menu-button">
+            <button onClick={toogleMenu} className="mobile-menu-button">
               <svg
-                className="w-6 h-6"
+                className="w-6 h-6 cursor-pointer"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -99,12 +94,14 @@ export const Header = () => {
           </div>
         </div>
       </div>
-      <div className="mobile-menu hidden md:hidden">
+      <div
+        className={`mobile-menu ${mobileMenu ? "block" : "hidden"}  md:hidden`}
+      >
         <a
           onClick={() => {
             navigate("/");
           }}
-          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer"
+          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer text-center"
         >
           Accueil
         </a>
@@ -112,7 +109,7 @@ export const Header = () => {
           onClick={() => {
             navigate("/prestations");
           }}
-          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer"
+          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer text-center"
         >
           Prestations
         </a>
@@ -120,7 +117,7 @@ export const Header = () => {
           onClick={() => {
             navigate("/realisaation");
           }}
-          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer"
+          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer text-center"
         >
           Realisaation
         </a>
@@ -128,7 +125,7 @@ export const Header = () => {
           onClick={() => {
             navigate("/blog");
           }}
-          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer"
+          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer text-center"
         >
           Blog
         </a>
@@ -136,7 +133,7 @@ export const Header = () => {
           onClick={() => {
             navigate("/about");
           }}
-          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer"
+          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer text-center"
         >
           A propos
         </a>
@@ -144,7 +141,7 @@ export const Header = () => {
           onClick={() => {
             navigate("/contact");
           }}
-          className="block py-2 px-4 text-sm  hover:bg-gray-200 cursor-pointer"
+          className="block py-2 px-4 text-sm  hover:bg-gray-200 cursor-pointer text-center"
         >
           Contact
         </a>
@@ -152,7 +149,7 @@ export const Header = () => {
           onClick={() => {
             navigate("/devis");
           }}
-          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer"
+          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer text-center"
         >
           Devis En ligne
         </a>

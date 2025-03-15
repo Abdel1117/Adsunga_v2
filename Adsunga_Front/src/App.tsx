@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <Header />
-      <main className="">
+      <main className="min-h-screen">
         <Routes>
           <Route path="/" element={<Accueil />} />
           <Route path="/prestations" element={<Prestations />} />
