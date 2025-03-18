@@ -5,7 +5,7 @@ export const WhoAreWe = () => {
       <div className=" relative  min-h-[500px] flex items-center justify-center p-1 md:p-0">
         <div className="lg:absolute lg:left-[0%] xl:left-[14%] w-[600px] h-auto rounded-lg shadow-lg p-1 md:p-5  z-50   bg-white ">
           <h2 className="text-primary font-semibold text-xl md:text-2xl">
-            Qui sommes-nous ?{" "}
+            Qui sommes-nous ?
           </h2>
           <p className="text-sm md:text-base my-5 md:pr-[20%]">
             Adsunga est une entreprise spécialisée dans les technologies
