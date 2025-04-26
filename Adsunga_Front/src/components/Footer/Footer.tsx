@@ -21,7 +21,7 @@ export const Footer = () => {
               href="#"
               className="text-white hover:text-slate-500 focus:text-slate-500 text-sm"
             >
-              About Us
+              A propos
             </a>
           </li>
           <li>
@@ -29,7 +29,7 @@ export const Footer = () => {
               href="#"
               className="text-white hover:text-slate-500 focus:text-slate-500 text-sm"
             >
-              License
+              Politique de confidentialité
             </a>
           </li>
           <li>
@@ -37,7 +37,7 @@ export const Footer = () => {
               href="#"
               className="text-white hover:text-slate-500 focus:text-slate-500 text-sm"
             >
-              Contribute
+              Mentions légales
             </a>
           </li>
           <li>
@@ -45,7 +45,7 @@ export const Footer = () => {
               href="#"
               className="text-white hover:text-slate-500 focus:text-slate-500 text-sm"
             >
-              Contact Us
+              Contact
             </a>
           </li>
         </ul>

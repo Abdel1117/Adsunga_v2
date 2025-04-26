@@ -8,6 +8,8 @@ import Logo_JO from "../../assets/icons/Logo_JO.png";
 import LogoEngie from "../../assets/icons/Logo-engie.svg.png";
 import LRI from "../../assets/icons/LRI.png";
 import aviv from "../../assets/icons/aviv.png";
+import { ContactUsBanner } from "../../components/ContactUsBanner/ContactUsBanner.tsx";
+import { MapsBanner } from "../../components/MapsBanner/MapsBanner.tsx";
 
 export const Accueil = () => {
   const imagesLogo = [Logo_JO, LogoEngie, LRI, aviv, sevenPizza];
@@ -18,6 +20,8 @@ export const Accueil = () => {
       <CertificationsBanner />
       <ArticleBanner />
       <LogoBanner arrayImage={imagesLogo} />
+      <ContactUsBanner />
+      <MapsBanner />
     </div>
   );
 };
