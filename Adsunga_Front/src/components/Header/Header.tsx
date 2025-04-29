@@ -11,7 +11,7 @@ export const Header = () => {
   };
 
   return (
-    <nav className="bg-[#ffffff]">
+    <nav className="bg-[#ffffff] shadow-lg">
       <div className="mx-2 lg:mx-4 md:px-2 px-4">
         <div className="flex justify-between">
           <div className="flex lg:space-x-4">

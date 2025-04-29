@@ -1,24 +1,59 @@
-interface LogoBannerProps {
+interface ArrayImageWithSub {
+  image: string;
+  subTitle: string;
+}
+
+interface LogoBannerPropsWithSub {
+  isWithSubTitle: true;
+  arrayImage: ArrayImageWithSub[];
+}
+
+interface LogoBannerPropsWithoutSub {
+  isWithSubTitle?: false;
   arrayImage: string[];
 }
 
-export const LogoBanner = (arrayImage: LogoBannerProps) => {
+type LogoBannerProps = LogoBannerPropsWithSub | LogoBannerPropsWithoutSub;
+
+export const LogoBanner = (props: LogoBannerProps) => {
+  const { arrayImage } = props;
+  const isWithSubTitle = props.isWithSubTitle ?? false;
+  const colCount = arrayImage.length <= 5 ? arrayImage.length : 5;
   return (
-    <section className="container mx-auto my-40">
-      <h2 className="text-primary font-semibold text-xl md:text-2xl text-center my-14">
-        Il nous ont fait confiance
-      </h2>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 justify-items-center mx-auto">
-        {arrayImage.arrayImage.map((image, index) => {
-          return (
-            <img
-              key={index}
-              src={image}
-              alt="logo"
-              className="w-[200px] h-[200px] object-contain"
-            />
-          );
-        })}
+    <section>
+      <div
+        className={` mx-auto my-40 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-${colCount} justify-items-center  gap-y-20 md:gap-y-0 gap-50 mx-auto`}
+      >
+        {isWithSubTitle
+          ? // Dans ce cas, arrayImage est typé ArrayImageWithSub[]
+            (arrayImage as ArrayImageWithSub[]).map((item, index) => (
+              <div
+                key={index}
+                className={`flex flex-col items-center justify-center gap-2  max-w-[300px] ${
+                  index === arrayImage.length - 1
+                    ? "col-span-1 md:col-span-2 lg:col-span-1"
+                    : ""
+                }`}
+              >
+                <img
+                  src={item.image}
+                  alt="logo"
+                  className="w-[200px] h-[200px] object-contain"
+                />
+                <p className="text-black text-sm font-normal text-center md:max-w-[60%]">
+                  {item.subTitle}
+                </p>
+              </div>
+            ))
+          : // Here, arrayImage est typé string[]
+            (arrayImage as string[]).map((item, index) => (
+              <img
+                key={index}
+                src={item}
+                alt="logo"
+                className="w-[200px] h-[200px] object-contain"
+              />
+            ))}
       </div>
     </section>
   );
