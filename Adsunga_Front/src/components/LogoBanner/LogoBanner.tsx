@@ -17,21 +17,32 @@ type LogoBannerProps = LogoBannerPropsWithSub | LogoBannerPropsWithoutSub;
 
 export const LogoBanner = (props: LogoBannerProps) => {
   const { arrayImage } = props;
-  const isWithSubTitle = props.isWithSubTitle ?? false;
-  const colCount = arrayImage.length <= 5 ? arrayImage.length : 5;
+  const isWithSubTitle: boolean = props.isWithSubTitle ?? false;
+  const colCount: number = arrayImage.length <= 5 ? arrayImage.length : 5;
+  const colCountClassMap: Record<number, string> = {
+    1: "lg:grid-cols-1",
+    2: "lg:grid-cols-2",
+    3: "lg:grid-cols-3",
+    4: "lg:grid-cols-4",
+    5: "lg:grid-cols-5",
+  };
+  const colCountClass = colCountClassMap[colCount] || "lg:grid-cols-5";
+
   return (
     <section>
       <div
-        className={` mx-auto my-40 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-${colCount} justify-items-center  gap-y-20 md:gap-y-0 gap-50 mx-auto`}
+        className={`mx-auto my-40 grid grid-cols-1 md:grid-cols-2 ${colCountClass}  justify-items-center  gap-y-20 md:gap-y-0 gap-50 mx-auto`}
       >
         {isWithSubTitle
           ? // Dans ce cas, arrayImage est typé ArrayImageWithSub[]
             (arrayImage as ArrayImageWithSub[]).map((item, index) => (
               <div
                 key={index}
-                className={`flex flex-col items-center justify-center gap-2  max-w-[300px] ${
+                className={`flex flex-col items-center justify-center gap-2 max-w-[300px] ${
                   index === arrayImage.length - 1
-                    ? "col-span-1 md:col-span-2 lg:col-span-1"
+                    ? "col-span-1 md:col-span-2 lg:col-span-1 md:justify-self-end"
+                    : index === 0
+                    ? "md:justify-self-start"
                     : ""
                 }`}
               >
@@ -40,7 +51,7 @@ export const LogoBanner = (props: LogoBannerProps) => {
                   alt="logo"
                   className="w-[200px] h-[200px] object-contain"
                 />
-                <p className="text-black text-sm font-normal text-center md:max-w-[60%]">
+                <p className="text-black text-sm font-normal text-center md:max-w-[100%]">
                   {item.subTitle}
                 </p>
               </div>

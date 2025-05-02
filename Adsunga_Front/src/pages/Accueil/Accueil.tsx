@@ -14,14 +14,16 @@ import { MapsBanner } from "../../components/MapsBanner/MapsBanner.tsx";
 export const Accueil = () => {
   const imagesLogo = [Logo_JO, LogoEngie, LRI, aviv, sevenPizza];
   return (
-    <div>
+    <>
       <BlocPlaceHolder />
       <WhoAreWe />
       <CertificationsBanner />
       <ArticleBanner />
-      <LogoBanner arrayImage={imagesLogo} />
+      <section className="container mx-auto">
+        <LogoBanner arrayImage={imagesLogo} />
+      </section>
       <ContactUsBanner />
       <MapsBanner />
-    </div>
+    </>
   );
 };

@@ -1,4 +1,3 @@
-import React from "react";
 import DrawIo from "../../assets/images/DrawIo.jpg";
 interface CardProps {
   imageSrc: string;
@@ -15,7 +14,7 @@ export const Card = ({
   descriptionArticle = "Lorem",
 }: CardProps) => {
   return (
-    <article className="max-w-sm bg-white  rounded-lg shadow-lg ">
+    <article className="max-w-sm bg-white  rounded-lg shadow-lg">
       <a href="#">
         <img className="rounded-t-lg" src={imageSrc} alt={alternativeText} />
       </a>
