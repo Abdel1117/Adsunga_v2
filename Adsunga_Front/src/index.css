@@ -3,6 +3,7 @@
 @theme {
     --color-primary: #239bc3;
     --color-secondary: #d7f5ff;
+    --color-tertiary: #F28500;
     --color-hover-link: #42a9cb;
 
     --background-image-hero-building: url("/src/assets/images/hero-building.jpg");

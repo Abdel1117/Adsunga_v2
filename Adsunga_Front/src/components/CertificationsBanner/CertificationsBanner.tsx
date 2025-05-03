@@ -3,7 +3,7 @@ import DgacLogo from "../../assets/icons/Dgac.png";
 
 export const CertificationsBanner = () => {
   return (
-    <section className="container mx-auto my-20">
+    <section className="container lg:max-w-4xl xl:max-w-7xl mx-auto my-20">
       <h2 className="text-2xl text-primary font-semibold text-center my-20">
         Nos savoirs faire et certifications
       </h2>

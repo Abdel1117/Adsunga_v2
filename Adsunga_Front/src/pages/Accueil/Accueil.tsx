@@ -19,7 +19,7 @@ export const Accueil = () => {
       <WhoAreWe />
       <CertificationsBanner />
       <ArticleBanner />
-      <section className="container mx-auto">
+      <section className="container lg:max-w-4xl xl:max-w-7xl mx-auto">
         <LogoBanner arrayImage={imagesLogo} />
       </section>
       <ContactUsBanner />

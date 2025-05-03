@@ -1,7 +1,7 @@
 import Drone from "../../assets/images/Drone.jpg";
 import { ArticleBanner } from "../../components/ArticlesBanner/ArticleBanner";
 
-import { Block } from "../../components/Block/Block";
+import { BlockArticle } from "../../components/BlockArticle/BlockArticle";
 
 export const Blog = () => {
   return (
@@ -13,7 +13,7 @@ export const Blog = () => {
       </section>
       {/* Begin of the blog  */}
       <section className="container lg:max-w-4xl xl:max-w-7xl mx-auto mt-20 px-2 sm:px-0">
-        <Block
+        <BlockArticle
           title={"Inspection et prévention des risques industriels"}
           date={"Vendredi 20 octobre 2023"}
           author={"Asdsunga"}
@@ -23,7 +23,7 @@ export const Blog = () => {
           images={[Drone, Drone]}
         />
 
-        <Block
+        <BlockArticle
           title={"Inspection et prévention des risques industriels"}
           date={"Vendredi 20 octobre 2023"}
           author={"Asdsunga"}
