@@ -16,7 +16,7 @@ export const Block = ({
   conslusionPara,
 }: BlockProps) => {
   return (
-    <article className="w-full grid grid-cols-1 md:grid-cols-2 gap-10 mb-10 p-1 md:p-8 bg-white rounded-lg shadow">
+    <article className="w-full h-full lg:max-h-[600px] grid grid-cols-1 md:grid-cols-2 gap-10 mb-10 p-1 md:p-8 bg-white rounded-lg shadow">
       <div>
         <h2 className="text-primary text-xl sm:text-2xl font-bold mb-4">
           {title}
@@ -37,13 +37,12 @@ export const Block = ({
           <p className="text-sm sm:text-base">{conslusionPara}</p>
         </div>
       </div>
-      <div className="">
-        <img
-          src={images}
-          alt="Image"
-          className="w-full h-full object-cover rounded"
-        />
-      </div>
+
+      <img
+        src={images}
+        alt="Image"
+        className="w-full h-full md:h-[500px]  my-auto object-cover rounded-lg"
+      />
     </article>
   );
 };
