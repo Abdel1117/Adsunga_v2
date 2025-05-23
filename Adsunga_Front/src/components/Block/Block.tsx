@@ -16,7 +16,7 @@ export const Block = ({
   conslusionPara,
 }: BlockProps) => {
   return (
-    <article className="w-full h-full lg:max-h-[600px] grid grid-cols-1 md:grid-cols-2 gap-10 mb-10 p-1 md:p-8 bg-white rounded-lg shadow">
+    <article className="w-full h-full lglo:max-h-[600px] grid grid-cols-1 md:grid-cols-2 gap-10 mb-10 p-1 md:p-8 bg-white rounded-lg shadow">
       <div>
         <h2 className="text-primary text-xl sm:text-2xl font-bold mb-4">
           {title}
