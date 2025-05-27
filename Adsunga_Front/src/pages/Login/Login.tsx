@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
+interface credentialInterface {
+  email: string;
+  password: string;
+}
+
 export const Login = () => {
   const API_URL = import.meta.env.VITE_API_URL;
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -19,7 +24,11 @@ export const Login = () => {
     try {
       setIsLoading(true);
       // Simulate a login request
-      const response = await fetch(`${API_URL}/api/connexion/connexion`, {
+      const data: credentialInterface = {
+        email: email,
+        password: password,
+      };
+      const response = await fetch(`${API_URL}/api/login/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,11 +38,11 @@ export const Login = () => {
       if (!response.ok) {
         throw new Error("Login failed");
       }
-      const data = await response.json();
+      const donne = await response.json();
       // Handle successful login (e.g., store token, redirect user)
-      console.log("Login successful:", data);
-      // You might want to store the token in localStorage or context
-      localStorage.setItem("token", data.token);
+      console.log("Login successful:", donne);
+      // You might want to store the token in sessionStorage or context
+      sessionStorage.setItem("token", donne.token);
       // Redirect to a protected route or homepage
       navigate("/"); // Assuming you have a navigate function from react-router
     } catch (error) {

@@ -24,7 +24,8 @@ export const getToken = (key: string): string | null => {
 export const checkToken = async (): Promise<Response> => {
   try {
     const token = sessionStorage.getItem("token");
-    const response = await fetch(`${apiUrl}/token/check`, { // vérifiez le nom de l'endpoint
+    console.log("Token à vérifier :", token);
+    const response = await fetch(`${apiUrl}/api/token/check`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

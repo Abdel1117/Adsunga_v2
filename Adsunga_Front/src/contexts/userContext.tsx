@@ -9,6 +9,8 @@ import { useNavigate } from "react-router";
 /*  */
 
 type UserContextType = {
+  isLoggedIn: boolean;
+  setIsLoggedIn: (isLoggedIn: boolean) => void;
   userAuth: UserType | null;
   setUserAuth: (user: UserType | null) => void;
   authError: string | null;
@@ -22,14 +24,16 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [userAuth, setUserAuth] = useState<UserType | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [authError, setAuthError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const navigate = useNavigate();
 
   const logout = useCallback(() => {
     setUserAuth(null);
     setToken("");
-    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    sessionStorage.removeItem("token");
     navigate("/");
   }, [navigate, setUserAuth]);
 
@@ -40,6 +44,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       if (response.ok) {
         const data = await response.json();
         setUserAuth(data);
+        setIsLoggedIn(true);
       } else {
         if (response.status === 401) {
           const refreshResponse = await refreshToken();
@@ -47,6 +52,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
             const newData = await refreshResponse.json();
             setUserAuth(newData);
             setToken(newData.token);
+            setIsLoggedIn(true);
           } else {
             logout();
           }
@@ -64,14 +70,13 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   }, [setUserAuth, logout]);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      checkUserAuth();
-    }
+    checkUserAuth();
   }, [checkUserAuth]);
   return (
     <UserContext.Provider
       value={{
+        isLoggedIn,
+        setIsLoggedIn,
         userAuth,
         setUserAuth,
         authError,

@@ -28,33 +28,39 @@ export const Header = () => {
             <div className="hidden md:flex items-center space-x-1">
               <a
                 onClick={() => navigate("/")}
-                className="md:mr-2 lg:mr-6 xl:mr-12  px-1 lg:px-3 text-gray-700 hover:text-gray-900 cursor-pointer"
+                className="mr-1 md:mr-2 xl:mr-6 xxl:mr-12 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer"
               >
                 Accueil
               </a>
               <a
                 onClick={() => navigate("/prestations")}
-                className="md:mr-2 lg:mr-6 xl:mr-14  px-1 lg:px-3 text-gray-700 hover:text-gray-900 cursor-pointer"
+                className="mr-1 md:mr-2 xl:mr-6 xxl:mr-14 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer"
               >
                 Prestations
               </a>
               <a
                 onClick={() => navigate("/realisation")}
-                className="md:mr-2 lg:mr-6 xl:mr-14  px-1 lg:px-3 text-gray-700 hover:text-gray-900 cursor-pointer"
+                className="mr-1 md:mr-2 xl:mr-6 xxl:mr-14 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer"
               >
                 Realisation
               </a>
               <a
                 onClick={() => navigate("/blog")}
-                className="md:mr-2 lg:mr-6 xl:mr-14  px-1 lg:px-3 text-gray-700 hover:text-gray-900 cursor-pointer"
+                className="mr-1 md:mr-2 xl:mr-6 xxl:mr-14 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer"
               >
                 Blog
               </a>
               <a
                 onClick={() => navigate("/about")}
-                className="md:mr-2 lg:mr-6 xl:mr-14  px-1 lg:px-3 text-gray-700 hover:text-gray-900 cursor-pointer"
+                className="mr-1 md:mr-2 xl:mr-6 xxl:mr-14 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer"
               >
                 A Propos
+              </a>
+              <a
+                className="mr-1 md:mr-2 xl:mr-6 xxl:mr-14 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer"
+                onClick={() => navigate("/dashboard")}
+              >
+                Dashboard
               </a>
             </div>
           </div>
@@ -136,6 +142,14 @@ export const Header = () => {
           className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer text-center"
         >
           A propos
+        </a>
+        <a
+          onClick={() => {
+            navigate("/dashboard");
+          }}
+          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer text-center"
+        >
+          Dashboard
         </a>
         <a
           onClick={() => {

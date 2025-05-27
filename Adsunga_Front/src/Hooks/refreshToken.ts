@@ -1,7 +1,7 @@
 export const refreshToken = async (): Promise<Response> => {
     const API_URL: string = import.meta.env.VITE_API_URL;
     try {
-        const response = await fetch(`${API_URL}/token/refreshToken`, { // Vérifiez le nom de l'endpoint
+        const response = await fetch(`${API_URL}/api/token/refreshToken`, { // Vérifiez le nom de l'endpoint
             method: "GET",
             credentials: "include",
             headers: {
