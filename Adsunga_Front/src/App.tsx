@@ -12,6 +12,8 @@ import { NotFound } from "./pages/NotFound/NotFound";
 import { Login } from "./pages/Login/Login";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { AjoutArticle } from "./pages/Dashboard/AjoutArticle/AjoutArticle";
+import { Article } from "./pages/Article/Article.tsx";
+
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 function App() {
@@ -22,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Accueil />} />
           <Route path="/prestations" element={<Prestations />} />
+          <Route path="/article/:id" element={<Article />} />
           <Route path="/realisation" element={<Realisation />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/about" element={<About />} />

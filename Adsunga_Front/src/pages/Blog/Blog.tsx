@@ -1,9 +1,17 @@
-import Drone from "../../assets/images/Drone.jpg";
 import { ArticleBanner } from "../../components/ArticlesBanner/ArticleBanner";
 
 import { BlockArticle } from "../../components/BlockArticle/BlockArticle";
+import { Loader } from "../../components/Loader/Loader";
+import { useRecentArticles } from "../../Hooks/useRecentArticles";
 
 export const Blog = () => {
+  const { articles, loading, error } = useRecentArticles(3);
+  if (loading) {
+    return <Loader />;
+  }
+  if (error) {
+    return <div className="text-red-500 text-center">{error}</div>;
+  }
   return (
     <>
       <section className="container lg:max-w-4xl xl:max-w-7xl mx-auto">
@@ -13,25 +21,21 @@ export const Blog = () => {
       </section>
       {/* Begin of the blog  */}
       <section className="container lg:max-w-4xl xl:max-w-7xl mx-auto mt-20 px-2 sm:px-0">
-        <BlockArticle
-          title={"Inspection et prévention des risques industriels"}
-          date={"Vendredi 20 octobre 2023"}
-          author={"Asdsunga"}
-          content={
-            "Réduisez les accidents et sécurisez vos infrastructures L'inspection des bâtiments et chantiers est cruciale pour garantir la sécurité des travailleurs et respecter les réglementations en vigueur. Des solutions comme l'inspection par drone permettent d'identifier les anomalies, d'assurer la conformité des infrastructures et d'optimiser la gestion des risques professionnels. Dans des environnements à haut risque, comme les sites industriels et les chantiers de construction, l'utilisation de technologies avancées, telles que les drones et les capteurs intelligents, permet de détecter les dangers invisibles à l'œil nu. Une étude menée par la DGAC (Direction Générale de l'Aviation Civile) souligne que les inspections par drone réduisent de 30 % le temps d’intervention et améliorent la précision des analyses. Source : DGAC - Drones et Sécurité En savoir plus sur l'inspection industrielle : Grâce aux nouvelles technologies, la prévention des risques industriels est plus efficace que jamais !"
-          }
-          images={[Drone, Drone]}
-        />
-
-        <BlockArticle
-          title={"Inspection et prévention des risques industriels"}
-          date={"Vendredi 20 octobre 2023"}
-          author={"Asdsunga"}
-          content={
-            "Réduisez les accidents et sécurisez vos infrastructures L'inspection des bâtiments et chantiers est cruciale pour garantir la sécurité des travailleurs et respecter les réglementations en vigueur. Des solutions comme l'inspection par drone permettent d'identifier les anomalies, d'assurer la conformité des infrastructures et d'optimiser la gestion des risques professionnels. Dans des environnements à haut risque, comme les sites industriels et les chantiers de construction, l'utilisation de technologies avancées, telles que les drones et les capteurs intelligents, permet de détecter les dangers invisibles à l'œil nu. Une étude menée par la DGAC (Direction Générale de l'Aviation Civile) souligne que les inspections par drone réduisent de 30 % le temps d’intervention et améliorent la précision des analyses. Source : DGAC - Drones et Sécurité En savoir plus sur l'inspection industrielle : Grâce aux nouvelles technologies, la prévention des risques industriels est plus efficace que jamais !"
-          }
-          images={[Drone, Drone]}
-        />
+        {articles.map((article) => (
+          <BlockArticle
+            key={article._id}
+            id={article._id}
+            title={article.title}
+            createdAt={new Date(article.createdAt).toLocaleDateString("fr-FR", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            })}
+            author={article.author}
+            content={article.content}
+            images={article.image}
+          />
+        ))}
       </section>
       {/* End of the blog  */}
       <section className="container lg:max-w-4xl xl:max-w-7xl mx-auto mt-15">

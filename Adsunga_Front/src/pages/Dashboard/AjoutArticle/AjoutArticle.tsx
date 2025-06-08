@@ -2,23 +2,47 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import { CKEditor, useCKEditorCloud } from "@ckeditor/ckeditor5-react";
 import "./AjoutArticle.css";
 import { Loader } from "../../../components/Loader/Loader";
+
 export const AjoutArticle = () => {
   const editorContainerRef = useRef(null);
   const editorRef = useRef(null);
   const [isLayoutReady, setIsLayoutReady] = useState(false);
+  const [title, setTitle] = useState<string>("");
+  const [image, setImage] = useState<File | null>(null);
+  const [content, setContent] = useState<string>("");
+  // Initialize CKEditor with cloud services
+
   const cloud = useCKEditorCloud({ version: "45.1.0", translations: ["fr"] });
   const LICENSE_KEY = import.meta.env.VITE_TOKEN_CKEDITOR;
-  const handleValidationOfSending = (): boolean => {
+  /*   const handleValidationOfSending = (): boolean => {
+    console.log("confirmation");
     const confirm: boolean = window.confirm(
       "Êtes-vous sûr de vouloir envoyer cet article ? Assurez-vous que tout est correct avant de continuer."
     );
     return confirm;
-  };
-  const handleAddArticle = async () => {
-    if (!handleValidationOfSending()) {
+  }; */
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      console.error("No file selected");
       return;
     }
-    const editor = editorRef.current?.editor;
+    const file = e.target.files[0];
+    if (file) {
+      setImage(() => {
+        return file;
+      });
+    }
+  };
+
+  const handleAddArticle = async () => {
+    /*     let isHandle = handleValidationOfSending();
+     */ /*  console.log("isHandle", isHandle);
+    if (!isHandle) {
+      return;
+    } */
+    const editor = editorRef.current;
+    console.log("editor", editor);
     if (!editor) {
       console.error("Editor is not initialized");
       return;
@@ -26,12 +50,16 @@ export const AjoutArticle = () => {
     const data = editor.getData();
     const API_URL = import.meta.env.VITE_API_URL;
     try {
-      const response = await fetch(`${API_URL}/api/articles`, {
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("content", data);
+      if (image) {
+        formData.append("image", image);
+      }
+
+      const response = await fetch(`${API_URL}/api/articles/createArticle`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ content: data }),
+        body: formData,
       });
 
       if (!response.ok) {
@@ -44,7 +72,6 @@ export const AjoutArticle = () => {
       console.error("Error adding article:", error);
     }
   };
-
   useEffect(() => {
     setIsLayoutReady(true);
 
@@ -202,7 +229,7 @@ export const AjoutArticle = () => {
           supportAllValues: true,
         },
         fontSize: {
-          options: [10, 12, 14, "default", 18, 20, 22],
+          options: [10, 12, 14, "default", 18, 20, 22, 24, 26, 28, 36],
           supportAllValues: true,
         },
         heading: {
@@ -304,14 +331,56 @@ export const AjoutArticle = () => {
   }, [cloud, isLayoutReady]);
 
   return (
-    <section className="container lg:max-w-4xl xl:max-w-7xl mx-auto flex flex-col items-center justify-center my-auto   min-h-screen p-5">
+    <section className="container lg:max-w-4xl xl:max-w-7xl mx-auto   min-h-screen p-5">
       <div ref={editorRef}>
         {isLayoutReady ? (
           <>
+            <div className="mb-4">
+              <label htmlFor="title" className="text-2xl font-bold mb-6  ">
+                Titre de l'article
+              </label>
+              <input
+                id="title"
+                type="text"
+                placeholder="Titre de l'article"
+                className="w-full p-2 mb-4 border border-gray-300 rounded"
+                onChange={(e) => {
+                  setTitle(e.target.value);
+                }}
+              />
+            </div>
+            <div className="mt-5  bg-primary p-2 rounded-lg my-4">
+              <label
+                className="dark:text-white mr-2 text-sm md:text-base"
+                htmlFor={`Image`}
+              >
+                Image de présentation de l'article
+              </label>
+              <input
+                className="text-white text-sm md:text-base"
+                type="file"
+                name={`Image`}
+                id={`Image`}
+                accept="image/*"
+                onChange={(e) => handleImageChange(e)}
+              />
+            </div>
             {ClassicEditor && editorConfig && (
-              <CKEditor editor={ClassicEditor} config={editorConfig} />
+              <CKEditor
+                editor={ClassicEditor}
+                config={editorConfig}
+                onReady={(editor) => {
+                  editorRef.current = editor;
+                  console.log("Editor is ready", editor);
+                }}
+                onChange={(event, editor) => {
+                  const data = editor.getData();
+                  setContent(data);
+                }}
+              />
             )}
             <button
+              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors hover:cursor-pointer"
               onClick={() => {
                 handleAddArticle();
               }}

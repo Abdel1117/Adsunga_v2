@@ -1,24 +1,29 @@
 import DOMPurify from "dompurify";
+import { useNavigate } from "react-router";
 interface BlockProps {
+  id: number;
   title: string;
-  date: string;
+  createdAt: string;
   author: string;
   content: string;
-  images?: string[]; // Optional array of image URLs
+  images?: string;
 }
 
 export const BlockArticle = ({
+  id,
   title,
-  date,
+  createdAt,
   author,
   content,
-  images = [],
+  images = "",
 }: BlockProps) => {
-  const safeContent = DOMPurify.sanitize(content);
+  const API_URL = import.meta.env.VITE_API_URL;
+  const navigate = useNavigate();
+  const safeContent = DOMPurify.sanitize(content.replace(/<img[^>]*>/g, ""));
   return (
-    <article className="w-full grid grid-cols-1 md:grid-cols-2 gap-10 mb-10 p-4 bg-white rounded-lg shadow">
+    <article className="w-full  grid grid-cols-1 md:grid-cols-2 gap-10 mb-10 p-4 bg-white rounded-lg shadow">
       <div>
-        <p className="text-sm text-gray-500">{date}</p>
+        <p className="text-sm text-gray-500">{createdAt}</p>
 
         <h2 className="text-2xl font-bold mb-2">{title}</h2>
         <p className="italic mb-4">Écrit par {author}</p>
@@ -27,6 +32,9 @@ export const BlockArticle = ({
           dangerouslySetInnerHTML={{ __html: safeContent }}
         />
         <button
+          onClick={() => {
+            navigate(`/article/${id}`);
+          }}
           type="button"
           className="cursor-pointer px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
@@ -90,19 +98,12 @@ export const BlockArticle = ({
           Lire la suite
         </button>
       </div>
-      <div
-        className={`grid order-2 gap-4 ${
-          images.length === 1 ? "grid-cols-1" : "grid-cols-2"
-        }`}
-      >
-        {images.map((src, index) => (
-          <img
-            key={index}
-            src={src}
-            alt={`Image ${index + 1}`}
-            className="w-full h-full object-cover rounded"
-          />
-        ))}
+      <div className={`grid order-2 gap-4 "grid-cols-1`}>
+        <img
+          src={`${API_URL}/uploads/${images}`}
+          alt={"image de l'article"}
+          className="w-full max-h-full object-cover rounded my-auto "
+        />
       </div>
     </article>
   );

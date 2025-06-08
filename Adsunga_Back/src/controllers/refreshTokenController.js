@@ -5,11 +5,11 @@ const REFRESH_TOKEN_CODE = process.env.REFRESH_TOKEN_CODE;
 const express = require('express');
 
 
-exports.handleRefresh= async (req, res) => {
+exports.handleRefresh = async (req, res) => {
   const refreshToken = req.body.refreshToken;
 
   // Verify that the refresh token is valid and retrieve the user ID from it
-  jwt.verify(refreshToken, secret, (err, decoded) => {
+  jwt.verify(refreshToken, REFRESH_TOKEN_CODE, (err, decoded) => {
     if (err) {
       return res.status(401).json({ error: 'Invalid refresh token' });
     }

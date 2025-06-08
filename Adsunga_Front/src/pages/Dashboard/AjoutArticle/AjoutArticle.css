@@ -23,3 +23,7 @@
 	min-width: 795px;
 	max-width: 795px;
 }
+
+.ck-editor__editable {
+  min-height: 500px;
+}

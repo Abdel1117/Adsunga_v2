@@ -1,0 +1,66 @@
+require("dotenv").config();
+const express = require("express");
+const { validationResult } = require("express-validator");
+const {checkContactForm} = require('../functions/CheckContactForm')
+const Article = require("../models/Article");
+
+exports.getAllArticle = async (req, res) => {
+    try {
+        const articles = await Article.find();
+        res.json(articles);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+exports.getRecentArticles = async (req, res) => {
+    try {
+        const limit = parseInt(req.query.limit) || 3; 
+        const articles = await Article.find().sort({ createdAt: -1 }).limit(limit);
+        res.json(articles);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+exports.getArticleById = async (req, res) => {
+    try {
+        const article = await Article.findById(req.params.id);
+        if (!article) return res.status(404).json({ message: "Article not found" });
+        res.json(article);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+
+exports.createArticle = async (req, res) => {
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+      // Vérifier que l'image a bien été uploadée
+        const imagePath = req.file ? req.file.filename : null;
+
+  if (!imagePath) {
+      return res.status(400).json({ message: "Image is required" });
+  }
+
+    const article = new Article({
+        title: req.body.title,
+        image: imagePath,
+        content: req.body.content,
+        createdAt: new Date(),
+        author : req.body.author || "Julien Safou", 
+    });
+    try {
+        const savedArticle = await article.save();
+        res.status(201).json(savedArticle);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
+
