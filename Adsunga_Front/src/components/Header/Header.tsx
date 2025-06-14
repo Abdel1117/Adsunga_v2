@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router";
 import Logo from "../../assets/icons/IconeLogo.png";
 import { useState } from "react";
+import { useUserContext } from "../../contexts/userContext";
 export const Header = () => {
   const navigate = useNavigate();
 
   const [mobileMenu, setMobileMenu] = useState<boolean>(false);
-
+  const { isLoggedIn } = useUserContext();
   const toogleMenu = (): void => {
     setMobileMenu(!mobileMenu);
   };
@@ -56,12 +57,14 @@ export const Header = () => {
               >
                 A Propos
               </a>
-              <a
-                className="mr-1 md:mr-2 xl:mr-6 xxl:mr-14 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer"
-                onClick={() => navigate("/dashboard")}
-              >
-                Dashboard
-              </a>
+              {isLoggedIn && (
+                <a
+                  onClick={() => navigate("/dashboard")}
+                  className="mr-1 md:mr-2 xl:mr-6 xxl:mr-14 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer"
+                >
+                  Dashboard
+                </a>
+              )}
             </div>
           </div>
 
@@ -143,14 +146,16 @@ export const Header = () => {
         >
           A propos
         </a>
-        <a
-          onClick={() => {
-            navigate("/dashboard");
-          }}
-          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer text-center"
-        >
-          Dashboard
-        </a>
+        {isLoggedIn && (
+          <a
+            onClick={() => {
+              navigate("/dashboard");
+            }}
+            className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer text-center"
+          >
+            Dashboard
+          </a>
+        )}
         <a
           onClick={() => {
             navigate("/contact");

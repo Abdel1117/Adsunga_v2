@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 interface Article {
+  _id: number;
   title: string;
   image: string;
   content: string;
@@ -14,6 +16,74 @@ export const Dashboard = () => {
   const [error, setError] = React.useState<string | null>(null);
 
   const navigate = useNavigate();
+
+  /* Function to delete an article */
+  const handleDeleteArticle = async (
+    articleId: number,
+    articleTitle: string
+  ) => {
+    const confirmDelete = window.confirm(
+      `Êtes-vous sûr de vouloir supprimer l'article ${articleTitle} ? Cette action est irréversible.`
+    );
+    if (!confirmDelete) {
+      return; // User cancelled the deletion
+    }
+    try {
+      setIsLoading(true);
+      const response = await fetch(
+        `${API_URL}/api/articles/deleteArticle/${articleId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          method: "DELETE",
+        }
+      );
+      if (!response.ok) {
+        toast.error(
+          "Une erreur s'est produite lors de la suppression de l'article."
+        );
+        console.error("Failed to delete article:", response.statusText);
+
+        throw new Error(
+          "Une erreur s'est produite lors de la suppression de l'article."
+        );
+      }
+      // Remove the deleted article from the state
+      setArticles((prevArticles) =>
+        prevArticles.filter((article: Article) => article._id !== articleId)
+      );
+      toast.info("Article supprimé avec succès !");
+    } catch (error) {
+      console.error("Failed to delete article:", error);
+      toast.error(
+        "Une erreur s'est produite lors de la suppression de l'article."
+      );
+      setError(
+        "Une erreur s'est produite lors de la suppression de l'article."
+      );
+    } finally {
+      setIsLoading(false);
+      setError(null);
+    }
+  };
+
+  /* =============================== */
+
+  /* Function to handle modification of article */
+  const handleEditArticle = (articleId: number, articleTitle: string) => {
+    const confirmEdit = window.confirm(
+      `Êtes-vous sûr de vouloir modifier l'article ${articleTitle} ?`
+    );
+    if (!confirmEdit) {
+      return; // User cancelled the modification
+    }
+
+    navigate(`/modifier_article/${articleId}`);
+  };
+
+  /* Function to get articles */
   const getArticle = async () => {
     try {
       setIsLoading(true);
@@ -33,6 +103,8 @@ export const Dashboard = () => {
       setError(null);
     }
   };
+  /* =============================== */
+  /* UseEffect to get articles */
   useEffect(() => {
     const fetchArticles = async () => {
       const articles = await getArticle();
@@ -40,7 +112,7 @@ export const Dashboard = () => {
     };
     fetchArticles();
   }, []);
-
+  /* ============================== */
   return (
     <section className="container lg:max-w-4xl xl:max-w-10/12 mx-auto overflow-hidden">
       <h1 className="text-primary text-xl md:text-3xl font-bold text-center mt-15">
@@ -57,6 +129,9 @@ export const Dashboard = () => {
         <h2 className="text-primary text-lg md:text-2xl font-bold text-center">
           Articles
         </h2>
+        {error && (
+          <p className="text-xl text-red-500 text-center mt-5">{error}</p>
+        )}
         <div className="flex justify-between items-center mt-5">
           <button
             onClick={() => navigate("/ajout_article")}
@@ -84,10 +159,18 @@ export const Dashboard = () => {
                   alt={article.title}
                   className="w-full h-48 object-contain rounded-lg mb-2"
                 />
-                <button className="bg-yellow-300 text-white px-4 py-2 rounded mt-2 mr-2 hover:cursor-pointer">
+                <button
+                  onClick={() => handleEditArticle(article._id, article.title)}
+                  className="bg-yellow-300 text-white px-4 py-2 rounded mt-2 mr-2 hover:cursor-pointer"
+                >
                   Modifier
                 </button>
-                <button className="bg-red-500 text-white px-4 py-2 rounded mt-2 hover:cursor-pointer">
+                <button
+                  onClick={() => {
+                    handleDeleteArticle(article._id, article.title);
+                  }}
+                  className="bg-red-500 text-white px-4 py-2 rounded mt-2 hover:cursor-pointer"
+                >
                   Supprimer
                 </button>
               </section>

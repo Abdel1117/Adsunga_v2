@@ -1,4 +1,6 @@
 import { Routes, Route } from "react-router";
+import { ToastContainer } from "react-toastify";
+
 import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/Footer";
 import { Accueil } from "./pages/Accueil/Accueil";
@@ -16,9 +18,14 @@ import { Article } from "./pages/Article/Article.tsx";
 
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
+import "react-toastify/dist/ReactToastify.css";
+import { EditArticle } from "./pages/Dashboard/EditArticle/EditArticle.tsx";
+
 function App() {
   return (
     <>
+      <ToastContainer />
+
       <Header />
       <main className="min-h-screen ">
         <Routes>
@@ -45,6 +52,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <AjoutArticle />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/modifier_article/:id"
+            element={
+              <ProtectedRoute>
+                <EditArticle />
               </ProtectedRoute>
             }
           />

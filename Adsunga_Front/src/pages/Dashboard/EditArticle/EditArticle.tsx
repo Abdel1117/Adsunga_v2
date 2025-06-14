@@ -1,12 +1,15 @@
 import { useState, useEffect, useRef, useMemo } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { CKEditor, useCKEditorCloud } from "@ckeditor/ckeditor5-react";
-import "./AjoutArticle.css";
+import "../AjoutArticle/AjoutArticle.css";
 import { Loader } from "../../../components/Loader/Loader";
 import { toast } from "react-toastify";
 
-export const AjoutArticle = () => {
+export const EditArticle = () => {
   const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
+
+  const API_URL = import.meta.env.VITE_API_URL;
   const category: {
     id: number;
     name: string;
@@ -16,6 +19,7 @@ export const AjoutArticle = () => {
     { id: 3, name: "Maintenance" },
     { id: 4, name: "Drone" },
   ];
+
   const editorContainerRef = useRef(null);
   const editorRef = useRef(null);
   const [isLayoutReady, setIsLayoutReady] = useState(false);
@@ -28,7 +32,6 @@ export const AjoutArticle = () => {
   const [categoryError, setCategoryError] = useState<string>("");
   const [imageError, setImageError] = useState<string>("");
   const [errorContent, setErrorContent] = useState<string>("");
-
   // Initialize CKEditor with cloud services
 
   const cloud = useCKEditorCloud({ version: "45.1.0", translations: ["fr"] });
@@ -36,7 +39,6 @@ export const AjoutArticle = () => {
   // Function to handle category change
   const handleCategoryChange = (category: string) => {
     setCategorySelected(category);
-    console.log("Selected category:", category);
   };
   /* ================================== */
   // Function to handle image change
@@ -114,14 +116,13 @@ export const AjoutArticle = () => {
   /* ================================== */
 
   // Function to handle adding an article
-  const handleAddArticle = async () => {
+  const handleEditArticle = async () => {
     const editor = editorRef.current;
     if (!editor) {
       console.error("Editor is not initialized");
       return;
     }
     const data = editor.getData();
-    const API_URL = import.meta.env.VITE_API_URL;
 
     if (!validateArticle()) {
       return;
@@ -136,28 +137,32 @@ export const AjoutArticle = () => {
       if (image) {
         formData.append("image", image);
       }
-
-      const response = await fetch(`${API_URL}/api/articles/createArticle`, {
-        method: "POST",
-        body: formData,
-      });
+      console.log(formData);
+      const response = await fetch(
+        `${API_URL}/api/articles//updateArticle/${id}`,
+        {
+          method: "PUT",
+          body: formData,
+        }
+      );
 
       if (!response.ok) {
-        throw new Error("Failed to add article");
-        toast.error("Échec de l'ajout de l'article");
+        toast.error("Échec de la mise à jour de l'article");
+        throw new Error("Failed to update article");
       } else {
-        toast.success("Article ajouté avec succès");
-        navigate("/dashboard");
+        toast.success("Article mis à jour avec succès");
+        navigate(`/article/${id}`);
       }
     } catch (error) {
       console.error("Error adding article:", error);
-      toast.error("Une erreur s'est produite lors de l'ajout de l'article");
+      toast.error(
+        "Une erreur s'est produite lors de la mise à jour de l'article"
+      );
     } finally {
       setIsLoading(false);
     }
   };
   /* ================================== */
-
   useEffect(() => {
     setIsLayoutReady(true);
     return () => setIsLayoutReady(false);
@@ -375,7 +380,8 @@ export const AjoutArticle = () => {
           ],
         },
         initialData:
-          "Bienvenue sur Adsunga, la plateforme de gestion de projets et de collaboration en ligne. Commencez à rédiger votre article ici !",
+          content ||
+          `<p>Bienvenue dans l'éditeur d'article. Vous pouvez commencer à écrire ici.</p>`,
         language: "fr",
         licenseKey: LICENSE_KEY,
         link: {
@@ -416,6 +422,38 @@ export const AjoutArticle = () => {
   }, [cloud, isLayoutReady]);
   /* ================================== */
 
+  /* UseEffect to load the article to edit */
+  useEffect(() => {
+    const getArticleToEdit = async (id: string) => {
+      console.log("Loading article with ID:", id);
+      if (!id) {
+        console.error("Article ID not found");
+        return;
+      }
+      try {
+        setIsLoading(true);
+        const response = await fetch(
+          `${API_URL}/api/articles/getArticleById/${id}`
+        );
+        if (!response.ok) {
+          toast.error("Échec de la récupération de l'article");
+          throw new Error("Failed to fetch article");
+        }
+        const data = await response.json();
+        console.log(data);
+        setTitle(data.title);
+        setContent(data.content);
+        setCategorySelected(data.category);
+        setImage(data.image);
+        setIsLayoutReady(true);
+      } catch (error) {
+        console.error("Error fetching article:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    getArticleToEdit(id as string);
+  }, [id]);
   return (
     <section className="container lg:max-w-4xl xl:max-w-7xl mx-auto   min-h-screen p-5">
       <div ref={editorRef}>
@@ -428,6 +466,7 @@ export const AjoutArticle = () => {
               <input
                 id="title"
                 type="text"
+                value={title}
                 placeholder="Titre de l'article"
                 className="w-full p-2 mb-4 border border-gray-300 rounded"
                 onChange={(e) => {
@@ -448,10 +487,8 @@ export const AjoutArticle = () => {
                 onChange={(e) => {
                   handleCategoryChange(e.target.value);
                 }}
+                value={categorySelected}
               >
-                <option value="" disabled selected>
-                  Sélectionnez une catégorie
-                </option>
                 {category.map((cat) => (
                   <option key={cat.id} value={cat.name}>
                     {cat.name}
@@ -491,13 +528,11 @@ export const AjoutArticle = () => {
                 />
               </div>
             )}
-            {imageError && (
-              <p className="text-red-500 text-sm mb-4 ">{imageError}</p>
-            )}
             {ClassicEditor && editorConfig && (
               <CKEditor
                 editor={ClassicEditor}
                 config={editorConfig}
+                value={content}
                 onReady={(editor) => {
                   editorRef.current = editor;
                   console.log("Editor is ready", editor);
@@ -514,10 +549,10 @@ export const AjoutArticle = () => {
             <button
               className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors hover:cursor-pointer"
               onClick={() => {
-                handleAddArticle();
+                handleEditArticle();
               }}
             >
-              Rajouter Article
+              Modifier Article
             </button>
             <button
               className="mt-4 ml-4 bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition-colors hover:cursor-pointer"

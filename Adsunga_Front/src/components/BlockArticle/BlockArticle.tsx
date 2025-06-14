@@ -19,7 +19,9 @@ export const BlockArticle = ({
 }: BlockProps) => {
   const API_URL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
-  const safeContent = DOMPurify.sanitize(content.replace(/<img[^>]*>/g, ""));
+  const safeContent = DOMPurify.sanitize(
+    content.replace(/<img[^>]*>/g, "").substring(0, 700) + "..."
+  );
   return (
     <article className="w-full  grid grid-cols-1 md:grid-cols-2 gap-10 mb-10 p-4 bg-white rounded-lg shadow">
       <div>
@@ -102,7 +104,7 @@ export const BlockArticle = ({
         <img
           src={`${API_URL}/uploads/${images}`}
           alt={"image de l'article"}
-          className="w-full max-h-full object-cover rounded my-auto "
+          className="w-full max-h-full h-[350px] object-contain rounded my-auto "
         />
       </div>
     </article>

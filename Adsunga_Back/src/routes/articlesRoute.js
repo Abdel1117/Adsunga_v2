@@ -11,7 +11,7 @@ router.get('/getAllArticles', ArticlesController.getAllArticle)
 router.get(`/getRecentArticles/:limit`, ArticlesController.getRecentArticles)
 router.get('/getArticleById/:id', ArticlesController.getArticleById)
 router.post('/createArticle',upload.single('image'), checkArticle, ArticlesController.createArticle)
-/* router.put('/updateArticle/:id',  checkContactForm, ArticlesController.updateArticle)
-router.delete('/deleteArticle/:id', checkContactForm, ArticlesController.deleteArticle) */
+router.put('/updateArticle/:id', upload.single('image'), checkArticle, ArticlesController.updateArticle)
+router.delete('/deleteArticle/:id',  ArticlesController.deleteArticle)
 
 module.exports = router;
