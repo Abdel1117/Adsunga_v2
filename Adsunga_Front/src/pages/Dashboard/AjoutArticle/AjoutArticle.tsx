@@ -16,7 +16,6 @@ export const AjoutArticle = () => {
     { id: 3, name: "Maintenance" },
     { id: 4, name: "Drone" },
   ];
-  const editorContainerRef = useRef(null);
   const editorRef = useRef(null);
   const [isLayoutReady, setIsLayoutReady] = useState(false);
   const [title, setTitle] = useState<string>("");
@@ -413,7 +412,7 @@ export const AjoutArticle = () => {
         },
       },
     };
-  }, [cloud, isLayoutReady]);
+  }, [cloud, isLayoutReady, LICENSE_KEY]);
   /* ================================== */
 
   return (

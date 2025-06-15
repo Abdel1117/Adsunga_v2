@@ -24,14 +24,15 @@ export const getToken = (key: string): string | null => {
 export const checkToken = async (): Promise<Response> => {
   try {
     const token = sessionStorage.getItem("token");
-    console.log("Token à vérifier :", token);
-    const response = await fetch(`${apiUrl}/api/token/check`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response;
+    if (token !== null) {
+      const response = await fetch(`${apiUrl}/api/token/check`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response;
+    }
   } catch (err) {
     console.error("Erreur lors de la vérification du token :", err);
     throw err;

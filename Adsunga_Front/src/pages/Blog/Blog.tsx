@@ -5,9 +5,13 @@ import { Loader } from "../../components/Loader/Loader";
 import { useRecentArticles } from "../../Hooks/useRecentArticles";
 
 export const Blog = () => {
-  const { articles, loading, error } = useRecentArticles(3);
+  const { articles, loading, error } = useRecentArticles(0, 3);
   if (loading) {
-    return <Loader />;
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        <Loader />
+      </div>
+    );
   }
   if (error) {
     return <div className="text-red-500 text-center">{error}</div>;
@@ -26,6 +30,7 @@ export const Blog = () => {
             key={article._id}
             id={article._id}
             title={article.title}
+            category={article.category}
             createdAt={new Date(article.createdAt).toLocaleDateString("fr-FR", {
               day: "numeric",
               month: "long",

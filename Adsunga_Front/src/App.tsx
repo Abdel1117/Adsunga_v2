@@ -15,7 +15,7 @@ import { Login } from "./pages/Login/Login";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { AjoutArticle } from "./pages/Dashboard/AjoutArticle/AjoutArticle";
 import { Article } from "./pages/Article/Article.tsx";
-
+import { CookieBanner } from "./components/CookieBanner/CookieBanner.tsx";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -64,6 +64,8 @@ function App() {
             }
           />
         </Routes>
+
+        <CookieBanner />
       </main>
       <Footer />
     </>

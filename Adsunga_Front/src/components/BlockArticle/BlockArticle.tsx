@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 interface BlockProps {
   id: number;
   title: string;
+  category: string;
   createdAt: string;
   author: string;
   content: string;
@@ -12,6 +13,7 @@ interface BlockProps {
 export const BlockArticle = ({
   id,
   title,
+  category,
   createdAt,
   author,
   content,
@@ -28,6 +30,8 @@ export const BlockArticle = ({
         <p className="text-sm text-gray-500">{createdAt}</p>
 
         <h2 className="text-2xl font-bold mb-2">{title}</h2>
+        <h4 className="mt-2 text-orange-600">{category}</h4>
+
         <p className="italic mb-4">Écrit par {author}</p>
         <div
           className="prose mb-4"

@@ -1,8 +1,15 @@
 import { Articles } from "../../types/ArticlesType";
-export const getRecentArticles = async (limit: number = 5): Promise<Articles[]> => {
+/**
+ * Fetches recent articles from the API.
+ * @param {number} from - The starting point for fetching articles.
+ * @param {number} [limit=5] - The maximum number of articles to fetch.
+ * @returns {Promise<Articles[]>} - A promise that resolves to an array of articles.
+ * @throws {Error} - Throws an error if the fetch operation fails.
+ */
+export const getRecentArticles = async (from: number = 0 , limit: number = 5): Promise<Articles[]> => {
   const API_URL = import.meta.env.VITE_API_URL;
   try {
-    const response = await fetch(`${API_URL}/api/articles/getRecentArticles/${limit}`);
+    const response = await fetch(`${API_URL}/api/articles/getRecentArticles/${from}/${limit}`);
     if (!response.ok) {
       throw new Error("Une erreur s'est produite lors de la récupération des articles récents.");
     }

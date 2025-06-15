@@ -4,7 +4,7 @@ import { Card } from "../Card/Card";
 import { Loader } from "../Loader/Loader";
 
 export const ArticleBanner = () => {
-  const { articles, loading, error } = useRecentArticles();
+  const { articles, loading, error } = useRecentArticles(3, 7);
   if (loading) {
     return <Loader />;
   }
@@ -24,6 +24,8 @@ export const ArticleBanner = () => {
             id={article._id}
             imageSrc={article.image as string}
             titleArticle={article.title}
+            date={article.createdAt}
+            category={article.category}
             descriptionArticle={
               article.content.replace(/<img[^>]*>/g, "").slice(0, 100) + "..."
             }

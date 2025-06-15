@@ -20,7 +20,6 @@ export const EditArticle = () => {
     { id: 4, name: "Drone" },
   ];
 
-  const editorContainerRef = useRef(null);
   const editorRef = useRef(null);
   const [isLayoutReady, setIsLayoutReady] = useState(false);
   const [title, setTitle] = useState<string>("");
@@ -419,7 +418,7 @@ export const EditArticle = () => {
         },
       },
     };
-  }, [cloud, isLayoutReady]);
+  }, [cloud, isLayoutReady, LICENSE_KEY]);
   /* ================================== */
 
   /* UseEffect to load the article to edit */
@@ -453,7 +452,7 @@ export const EditArticle = () => {
       }
     };
     getArticleToEdit(id as string);
-  }, [id]);
+  }, [id, API_URL]);
   return (
     <section className="container lg:max-w-4xl xl:max-w-7xl mx-auto   min-h-screen p-5">
       <div ref={editorRef}>
@@ -528,6 +527,7 @@ export const EditArticle = () => {
                 />
               </div>
             )}
+            {imageError && <p className="text-red-500 text-sm">{imageError}</p>}
             {ClassicEditor && editorConfig && (
               <CKEditor
                 editor={ClassicEditor}
