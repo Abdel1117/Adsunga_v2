@@ -47,7 +47,7 @@ export const Blog = () => {
         <h2 className="text-primary text-xl md:text-3xl font-bold text-center  ">
           Autre articles publiés récemment
         </h2>
-        <ArticleBanner />
+        <ArticleBanner from={3} limit={100} />
       </section>
       {/* Other Article Liste */}
     </>

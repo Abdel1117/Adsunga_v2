@@ -15,8 +15,8 @@ exports.getAllArticle = async (req, res) => {
 
 exports.getRecentArticles = async (req, res) => {
     try {
-        const limit = parseInt(req.params.limit) || 3;
-        const from = parseInt(req.params.from) || 0;
+        let limit = parseInt(req.params.limit) || 3;
+        let from = parseInt(req.params.from) || 0;
         console.log(from, limit);
         if (isNaN(limit) || isNaN(from)) {
             return res.status(400).json({ message: "Invalid query parameters" });

@@ -32,7 +32,7 @@ export const Card = ({
     year: "numeric",
   });
   return (
-    <article className="max-w-sm bg-white  rounded-lg shadow-lg">
+    <article className="max-w-full min-h-[300px] bg-white  rounded-lg shadow-lg">
       <a href="#">
         <img
           className="rounded-t-lg w-full h-[200px] object-contain"
