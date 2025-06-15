@@ -8,7 +8,7 @@ const { checkArticle } = require('../functions/checkArticle');
 dotenv.config();
 
 router.get('/getAllArticles', ArticlesController.getAllArticle)
-router.get(`/getRecentArticles/:limit`, ArticlesController.getRecentArticles)
+router.get(`/getRecentArticles/:from/:limit`, ArticlesController.getRecentArticles)
 router.get('/getArticleById/:id', ArticlesController.getArticleById)
 router.post('/createArticle',upload.single('image'), checkArticle, ArticlesController.createArticle)
 router.put('/updateArticle/:id', upload.single('image'), checkArticle, ArticlesController.updateArticle)

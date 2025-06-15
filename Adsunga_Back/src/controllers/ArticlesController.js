@@ -15,8 +15,20 @@ exports.getAllArticle = async (req, res) => {
 
 exports.getRecentArticles = async (req, res) => {
     try {
-        const limit = parseInt(req.query.limit) || 3; 
-        const articles = await Article.find().sort({ createdAt: -1 }).limit(limit);
+        const limit = parseInt(req.params.limit) || 3;
+        const from = parseInt(req.params.from) || 0;
+        console.log(from, limit);
+        if (isNaN(limit) || isNaN(from)) {
+            return res.status(400).json({ message: "Invalid query parameters" });
+        }
+        const totalArticles = await Article.countDocuments();
+        if (from >= totalArticles ){
+            return res.status(400).json({ message: "No more articles available" });
+        }
+        if(limit > totalArticles){
+            limit = totalArticles;
+        }
+        const articles = await Article.find().sort({ createdAt: -1 }).skip(from).limit(limit);
         res.json(articles);
     } catch (error) {
         res.status(500).json({ message: error.message });

@@ -8,14 +8,12 @@ exports.authenticateToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   const token = authHeader && authHeader.split(' ')[1];
-  console.log(authHeader)
-  console.log(token)
+ 
   if (!token) {
     return res.status(401).json({ error: 'Access token not provided' });
   }
   jwt.verify(token, AUTH_TOKEN_CODE, (err, payload) => {
-    console.log("Payload:", payload);
-    console.log("Error:", err);
+
     if (err) {
       console.error("Token verification error:", err);
       return res.status(403).json({ error: 'Invalid or expired access token' });
