@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Phone from "../../assets/icons/Phone bleu.png";
+import Phone from "../../assets/icons/phone-bleu.png";
 import { MapsBanner } from "../../components/MapsBanner/MapsBanner";
 import { checkIfEmpty, checkRegex } from "../../utils/formValidation/formUtils";
 import { Loader } from "../../components/Loader/Loader";

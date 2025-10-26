@@ -2,8 +2,8 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import QualiopiLogo from "../../assets/icons/Qualiopi.png";
-import DgacLogo from "../../assets/icons/Dgac.png";
+import QualiopiLogo from "../../assets/icons/qualiopi.png";
+import DgacLogo from "../../assets/icons/dgac.png";
 
 export const CertificationsBanner = () => {
   const firstCard = useRef<HTMLDivElement | null>(null);

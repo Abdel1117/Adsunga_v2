@@ -1,5 +1,5 @@
-import House from "../../assets/images/House.jpg";
-import Drone from "../../assets/images/Drone.jpg";
+import House from "../../assets/images/house.jpg";
+import Drone from "../../assets/images/drone.jpg";
 export const Realisation = () => {
   const arrayImage = [House, House, House];
 

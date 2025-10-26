@@ -1,7 +1,7 @@
 import { Block } from "../../components/Block/Block";
-import DroneImage from "../../assets/icons/DroneFlying.png";
-import BouclierNoir from "../../assets/icons/bouclier noir.png";
-import TelephoneNoir from "../../assets/icons/Phone noir.png";
+import DroneImage from "../../assets/icons/droneflying.png";
+import BouclierNoir from "../../assets/icons/bouclier-noir.png";
+import TelephoneNoir from "../../assets/icons/phone-noir.png";
 import { LogoBanner } from "../../components/LogoBanner/LogoBanner";
 
 export const About = () => {

@@ -4,9 +4,9 @@ import { CertificationsBanner } from "../../components/CertificationsBanner/Cert
 import { LogoBanner } from "../../components/LogoBanner/LogoBanner.tsx";
 import { ArticleBanner } from "../../components/ArticlesBanner/ArticleBanner.tsx";
 import sevenPizza from "../../assets/icons/7pizza.jpg";
-import Logo_JO from "../../assets/icons/Logo_JO.png";
-import LogoEngie from "../../assets/icons/Logo-engie.svg.png";
-import LRI from "../../assets/icons/LRI.png";
+import Logo_JO from "../../assets/icons/logo-jo.png";
+import LogoEngie from "../../assets/icons/logo-engie.svg.png";
+import LRI from "../../assets/icons/lri.png";
 import aviv from "../../assets/icons/aviv.png";
 import { ContactUsBanner } from "../../components/ContactUsBanner/ContactUsBanner.tsx";
 import { MapsBanner } from "../../components/MapsBanner/MapsBanner.tsx";

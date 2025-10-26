@@ -1,4 +1,4 @@
-import AdsungaLogoBlanc from "../../assets/icons/IconeLogoBlanc.png";
+import AdsungaLogoBlanc from "../../assets/icons/iconelogoblanc.png";
 import { useNavigate } from "react-router";
 import { getCurrentYear } from "../../utils/date/DateFonction";
 export const Footer = () => {

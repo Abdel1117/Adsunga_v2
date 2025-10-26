@@ -59,7 +59,7 @@ export const Login = () => {
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             alt="Adunsga Logo"
-            src="../../src/assets/icons/Drone noir.png"
+            src="../../src/assets/icons/drone-noir.png"
             className="mx-auto h-15 w-auto"
           />
           <h2 className="mt-5 text-center text-2xl/9 font-bold tracking-tight text-gray-900">

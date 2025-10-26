@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import Logo from "../../assets/icons/IconeLogo.png";
+import Logo from "../../assets/icons/iconelogo.png";
 import { useState } from "react";
 import { useUserContext } from "../../contexts/userContext";
 export const Header = () => {

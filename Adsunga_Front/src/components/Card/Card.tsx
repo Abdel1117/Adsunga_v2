@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import DOMPurify from "dompurify";
-import DrawIo from "../../assets/images/DrawIo.jpg";
+import DrawIo from "../../assets/images/drawio.jpg";
 interface CardProps {
   id?: number;
   imageSrc: string;
