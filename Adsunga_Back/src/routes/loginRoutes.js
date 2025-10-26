@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const dotenv = require('dotenv');
-const loginController = require('../controllers/loginController');
+const loginController = require('../controllers/LoginController');
 const checkLoginForm = require('../functions/checkLoginForm');
 
 dotenv.config();

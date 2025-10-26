@@ -4,8 +4,8 @@ const router = express.Router()
 
 dotenv.config();
 
-const tokenChecker = require("../controllers/tokenController.js")
-const refreshToken = require("../controllers/refreshTokenController.js")
+const tokenChecker = require("../controllers/TokenController.js")
+const refreshToken = require("../controllers/RefreshTokenController.js")
 
 router.get("/check", tokenChecker.authenticateToken, (req, res) => {
     res.status(200).json(req.user );
