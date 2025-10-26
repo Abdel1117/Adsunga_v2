@@ -19,11 +19,11 @@ exports.getRecentArticles = async (req, res) => {
         let from = parseInt(req.params.from) || 0;
         console.log(from, limit);
         if (isNaN(limit) || isNaN(from)) {
-            return res.status(400).json({ message: "Invalid query parameters" });
+            return res.status(400).json({ message: "Paramètres de requête invalides" });
         }
         const totalArticles = await Article.countDocuments();
         if (from >= totalArticles ){
-            return res.status(400).json({ message: "No more articles available" });
+            return res.status(400).json({ message: "Il n'y a plus d'articles disponibles" });
         }
         if(limit > totalArticles){
             limit = totalArticles;

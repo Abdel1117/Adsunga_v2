@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  adsunga-back:
+    build:
+      context: ./Adsunga_Back
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT}:${PORT}"
+    volumes:
+      - ./Adsunga_Back:/app
+    depends_on:
+      - mongo
+    container_name: adsunga_backend
+
+  adsunga-front:
+    build:
+      context: ./Adsunga_Front
+      dockerfile: Dockerfile
+     
+    env_file:
+      - ./Adsunga_Front/.env
+    ports:
+      - "${VITE_PORT}:${VITE_PORT}" 
+    volumes:
+      - ./Adsunga_Front:/app
+      - adsunga_front_node_modules:/app/node_modules # Preserve le modules de l'image
+      
+    container_name: adsunga_frontend
+
+  mongo:
+    image: mongo:latest
+    restart: always
+    container_name: mongo
+    ports:
+      - "${MONGO_PORT}:${MONGO_PORT}"
+    volumes:
+      - mongo-data:/data/db
+      - ./dump:/dump
+
+volumes:
+  mongo-data:
+  adsunga_front_node_modules:

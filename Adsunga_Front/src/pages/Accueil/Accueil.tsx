@@ -18,7 +18,7 @@ export const Accueil = () => {
       <BlocPlaceHolder />
       <WhoAreWe />
       <CertificationsBanner />
-      <ArticleBanner from={0} limit={3} />
+      <ArticleBanner from={0} limit={100} />
       <section className="container lg:max-w-4xl xl:max-w-7xl mx-auto">
         <LogoBanner arrayImage={imagesLogo} />
       </section>

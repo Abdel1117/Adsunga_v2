@@ -9,7 +9,7 @@ const loginRoutes = require("./routes/loginRoutes.js");
 const tokenRoutes = require("./routes/tokenRoutes.js")
 const articlesRoutes = require("./routes/articlesRoute.js");
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 
 // Connexion à la base de données
 connectDB();
@@ -31,5 +31,7 @@ app.use("/api/devis", devisRoutes)
 app.use('/api/login', loginRoutes);
 app.use("/api/token", tokenRoutes)
 app.use('/api/articles', articlesRoutes);
-
+app.use("*", (req, res)=>{
+    console.log("Hello from Adsunga Back");
+})
 app.listen(PORT, () => console.log(`Serveur démarré ssur http://localhost:${PORT}`));

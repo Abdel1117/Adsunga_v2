@@ -47,10 +47,10 @@ export const ArticleBanner = ({ from, limit }: ArticleBannerProps) => {
           },
           1024: {
             slidesPerView: 3,
-            spaceBetween: 30,
+            spaceBetween: 20,
           },
         }}
-        spaceBetween={30}
+        spaceBetween={20}
         centeredSlides={true}
         loop={true}
         autoplay={{
