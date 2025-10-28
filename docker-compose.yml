@@ -24,8 +24,8 @@ services:
       - "${VITE_PORT}:${VITE_PORT}" 
     volumes:
       - ./Adsunga_Front:/app
-      - adsunga_front_node_modules:/app/node_modules # Preserve le modules de l'image
-      
+      - /app/node_modules  # Exclure node_modules du bind mount
+
     container_name: adsunga_frontend
 
   mongo:

@@ -1,11 +1,9 @@
 
-ARG NODE_VERSION=20
 
-FROM node:${NODE_VERSION} AS base
+FROM node:20-alpine
 WORKDIR /app
 COPY package*.json ./
 
-FROM base AS dev
 
 ARG PORT
 ARG APP_ENV
@@ -16,7 +14,7 @@ ENV PORT=${PORT}
 ENV MONGO_PORT=${MONGO_PORT}
 
 # Installer les dépendances
-RUN npm install && npm install nodemon && npm install -g pm2
+RUN npm install && npm install nodemon
 COPY . .
 EXPOSE ${PORT}
 # Lancement en mode développement
