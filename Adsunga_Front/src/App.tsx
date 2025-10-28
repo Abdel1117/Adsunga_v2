@@ -17,23 +17,12 @@ import { AjoutArticle } from "./pages/Dashboard/AjoutArticle/AjoutArticle";
 import { Article } from "./pages/Article/Article.tsx";
 import { CookieBanner } from "./components/CookieBanner/CookieBanner.tsx";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import { Helmet } from "react-helmet-async";
 import "react-toastify/dist/ReactToastify.css";
 import { EditArticle } from "./pages/Dashboard/EditArticle/EditArticle.tsx";
 
 function App() {
   return (
     <>
-      <Helmet>
-        <title>
-          Bureau d'étude technique - Prévention bâtiment, HSE, CSPS, inspection
-          par drone - Adsunga
-        </title>
-        <meta
-          name="description"
-          content="Adsunga est un bureau d'études technique pour le BTP et l'industrie basé en IDF. Prestations : HSE, CSPS, Inspection par drone, Thermographie..."
-        />
-      </Helmet>
       <ToastContainer />
 
       <Header />
