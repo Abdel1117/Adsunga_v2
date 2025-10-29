@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-
+import AdsungaLogo from "../../assets/icons/drone-noir.png";
 interface credentialInterface {
   email: string;
   password: string;
@@ -59,7 +59,7 @@ export const Login = () => {
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             alt="Adunsga Logo"
-            src="../../src/assets/icons/drone-noir.png"
+            src={AdsungaLogo}
             className="mx-auto h-15 w-auto"
             loading="lazy"
           />
