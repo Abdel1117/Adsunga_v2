@@ -20,9 +20,13 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import "react-toastify/dist/ReactToastify.css";
 import { EditArticle } from "./pages/Dashboard/EditArticle/EditArticle.tsx";
 
+import { MentionsLegales } from "./pages/MentionsLegales/MentionsLegales.tsx";
+import { PolitiqueConfidentialite } from "./pages/PolitiqueConfidentialite/PolitiqueConfidentialite.tsx";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop.tsx";
 function App() {
   return (
     <>
+      <ScrollToTop />
       <ToastContainer />
 
       <Header />
@@ -37,7 +41,12 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/devis" element={<Devis />} />
           <Route path="/login" element={<Login />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/mentions-legales" element={<MentionsLegales />} />
+          <Route
+            path="/politique-confidentialite"
+            element={<PolitiqueConfidentialite />}
+          />
+
           <Route
             path="/dashboard"
             element={
@@ -62,6 +71,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
 
         <CookieBanner />

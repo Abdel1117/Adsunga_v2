@@ -29,38 +29,38 @@ export const Header = () => {
             <div className="hidden md:flex items-center space-x-1">
               <a
                 onClick={() => navigate("/")}
-                className="mr-1 md:mr-2 xl:mr-6 xxl:mr-12 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer"
+                className="mr-1 md:mr-2 xl:mr-6 xxl:mr-12 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer hover:underline"
               >
                 Accueil
               </a>
               <a
                 onClick={() => navigate("/prestations")}
-                className="mr-1 md:mr-2 xl:mr-6 xxl:mr-14 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer"
+                className="mr-1 md:mr-2 xl:mr-6 xxl:mr-14 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer hover:underline"
               >
                 Prestations
               </a>
               <a
                 onClick={() => navigate("/realisation")}
-                className="mr-1 md:mr-2 xl:mr-6 xxl:mr-14 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer"
+                className="mr-1 md:mr-2 xl:mr-6 xxl:mr-14 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer hover:underline"
               >
                 Realisation
               </a>
               <a
                 onClick={() => navigate("/blog")}
-                className="mr-1 md:mr-2 xl:mr-6 xxl:mr-14 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer"
+                className="mr-1 md:mr-2 xl:mr-6 xxl:mr-14 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer hover:underline"
               >
                 Blog
               </a>
               <a
                 onClick={() => navigate("/about")}
-                className="mr-1 md:mr-2 xl:mr-6 xxl:mr-14 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer"
+                className="mr-1 md:mr-2 xl:mr-6 xxl:mr-14 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer hover:underline"
               >
                 A Propos
               </a>
               {isLoggedIn && (
                 <a
                   onClick={() => navigate("/dashboard")}
-                  className="mr-1 md:mr-2 xl:mr-6 xxl:mr-14 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer"
+                  className="mr-1 md:mr-2 xl:mr-6 xxl:mr-14 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer hover:underline"
                 >
                   Dashboard
                 </a>
@@ -71,13 +71,13 @@ export const Header = () => {
           <div className="hidden md:flex items-center space-x-1">
             <a
               onClick={() => navigate("/contact")}
-              className="p-2 bg-primary rounded-md text-white w-[80px] text-center cursor-pointer"
+              className="p-2 bg-primary rounded-md text-white w-[80px] text-center cursor-pointer hover:underline"
             >
               Contact
             </a>
             <a
               onClick={() => navigate("/devis")}
-              className="py-2 px-3 bg-secondary  text-primary rounded  cursor-pointer"
+              className="py-2 px-3 bg-secondary  text-primary rounded  cursor-pointer hover:underline"
             >
               Devis en ligne
             </a>
@@ -86,7 +86,7 @@ export const Header = () => {
           <div className="md:hidden flex items-center">
             <button onClick={toogleMenu} className="mobile-menu-button">
               <svg
-                className="w-6 h-6 cursor-pointer"
+                className="w-6 h-6 cursor-pointer hover:underline"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -110,7 +110,7 @@ export const Header = () => {
           onClick={() => {
             navigate("/");
           }}
-          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer text-center"
+          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer hover:underline text-center"
         >
           Accueil
         </a>
@@ -118,7 +118,7 @@ export const Header = () => {
           onClick={() => {
             navigate("/prestations");
           }}
-          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer text-center"
+          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer hover:underline text-center"
         >
           Prestations
         </a>
@@ -126,7 +126,7 @@ export const Header = () => {
           onClick={() => {
             navigate("/realisaation");
           }}
-          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer text-center"
+          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer hover:underline text-center"
         >
           Realisaation
         </a>
@@ -134,7 +134,7 @@ export const Header = () => {
           onClick={() => {
             navigate("/blog");
           }}
-          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer text-center"
+          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer hover:underline text-center"
         >
           Blog
         </a>
@@ -142,7 +142,7 @@ export const Header = () => {
           onClick={() => {
             navigate("/about");
           }}
-          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer text-center"
+          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer hover:underline text-center"
         >
           A propos
         </a>
@@ -151,7 +151,7 @@ export const Header = () => {
             onClick={() => {
               navigate("/dashboard");
             }}
-            className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer text-center"
+            className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer hover:underline text-center"
           >
             Dashboard
           </a>
@@ -160,7 +160,7 @@ export const Header = () => {
           onClick={() => {
             navigate("/contact");
           }}
-          className="block py-2 px-4 text-sm  hover:bg-gray-200 cursor-pointer text-center"
+          className="block py-2 px-4 text-sm  hover:bg-gray-200  cursor-pointer text-center"
         >
           Contact
         </a>
@@ -168,7 +168,7 @@ export const Header = () => {
           onClick={() => {
             navigate("/devis");
           }}
-          className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer text-center"
+          className="block py-2 px-4 text-sm hover:bg-gray-200  cursor-pointer text-center"
         >
           Devis En ligne
         </a>

@@ -18,32 +18,32 @@ export const Footer = () => {
         <ul className="flex flex-col md:flex-row flex-wrap items-center gap-y-2 gap-x-8">
           <li>
             <a
-              href="#"
-              className="text-white hover:text-slate-500 focus:text-slate-500 text-sm"
+              onClick={() => navigate("/about")}
+              className="text-white hover:cursor-pointer hover:underline focus:text-slate-500 text-sm"
             >
               A propos
             </a>
           </li>
           <li>
             <a
-              href="#"
-              className="text-white hover:text-slate-500 focus:text-slate-500 text-sm"
+              onClick={() => navigate("/politique-confidentialite")}
+              className="text-white hover:cursor-pointer hover:underline focus:text-slate-500 text-sm"
             >
               Politique de confidentialité
             </a>
           </li>
           <li>
             <a
-              href="#"
-              className="text-white hover:text-slate-500 focus:text-slate-500 text-sm"
+              onClick={() => navigate("/mentions-legales")}
+              className="text-white hover:cursor-pointer hover:underline focus:text-slate-500 text-sm"
             >
               Mentions légales
             </a>
           </li>
           <li>
             <a
-              href="#"
-              className="text-white hover:text-slate-500 focus:text-slate-500 text-sm"
+              onClick={() => navigate("/contact")}
+              className="text-white hover:cursor-pointer hover:underline focus:text-slate-500 text-sm"
             >
               Contact
             </a>

@@ -1,11 +1,12 @@
 import Drone from "../../assets/images/drone.png";
 import { useRef } from "react";
 import { useFadeInFromX } from "../../Hooks/useFadeInFromX";
+import { useNavigate } from "react-router";
 
 export const WhoAreWe = () => {
   const cardRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
-
+  const navigate = useNavigate();
   useFadeInFromX(cardRef as React.RefObject<HTMLElement>, 0, 1, -500, 0);
   useFadeInFromX(imageRef as React.RefObject<HTMLElement>, 0, 1, 500, 0);
   return (
@@ -37,7 +38,12 @@ export const WhoAreWe = () => {
             </p>
           </div>
           <div className="m-4">
-            <button className="px-5  ml-auto mr-0 rounded-md block bg-secondary text-primary py-2 cursor-pointer">
+            <button
+              onClick={() => {
+                navigate("/about");
+              }}
+              className="px-5  ml-auto mr-0 rounded-md block bg-secondary text-primary py-2 cursor-pointer"
+            >
               A propos
             </button>
           </div>
