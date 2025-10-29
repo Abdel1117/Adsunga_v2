@@ -39,6 +39,7 @@ export const Block = ({
       </div>
 
       <img
+        loading="lazy"
         src={images}
         alt="Image"
         className="w-full h-full md:h-[500px]  my-auto object-cover rounded-lg"

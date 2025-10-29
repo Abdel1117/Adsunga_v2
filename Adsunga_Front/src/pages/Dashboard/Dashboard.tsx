@@ -158,6 +158,7 @@ export const Dashboard = () => {
                   src={`${API_URL}/uploads/${article.image}`}
                   alt={article.title}
                   className="w-full h-48 object-contain rounded-lg mb-2"
+                  loading="lazy"
                 />
                 <button
                   onClick={() => handleEditArticle(article._id, article.title)}

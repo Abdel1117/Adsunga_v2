@@ -29,6 +29,7 @@ export const BlockWithGridImageReversed = ({
               <img
                 key={index}
                 src={image}
+                loading="lazy"
                 alt={`grid-image-${index}`}
                 className="w-full max-w-[100%] object-cover aspect-square rounded-lg"
               />

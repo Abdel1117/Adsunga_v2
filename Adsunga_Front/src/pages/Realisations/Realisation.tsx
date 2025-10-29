@@ -31,7 +31,12 @@ export const Realisation = () => {
               <p className="my-5">Thermographie, capteurs intelligents.</p>
             </div>
             <div className="">
-              <img className="w-full rounded-lg" src={House} alt="House" />
+              <img
+                className="w-full rounded-lg"
+                src={House}
+                alt="House"
+                loading="lazy"
+              />
             </div>
           </div>
 
@@ -39,6 +44,7 @@ export const Realisation = () => {
             className="rounded-lg h-full w-full object-cover"
             src={Drone}
             alt="Drone de présentation"
+            loading="lazy"
           />
         </div>
       </section>
@@ -52,6 +58,7 @@ export const Realisation = () => {
               className="w-full h-auto rounded-lg"
               src={image}
               alt={`Image ${index + 1}`}
+              loading="lazy"
             />
           ))}
         </div>
@@ -75,7 +82,12 @@ export const Realisation = () => {
               <p className="my-5">Thermographie, capteurs intelligents.</p>
             </div>
             <div className="">
-              <img className="w-full rounded-lg" src={House} alt="House" />
+              <img
+                loading="lazy"
+                className="w-full rounded-lg"
+                src={House}
+                alt="House"
+              />
             </div>
           </div>
 
@@ -83,6 +95,7 @@ export const Realisation = () => {
             className="rounded-lg h-full w-full object-cover"
             src={Drone}
             alt="Drone de présentation"
+            loading="lazy"
           />
         </div>
       </section>

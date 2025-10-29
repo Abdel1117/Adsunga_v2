@@ -117,6 +117,7 @@ export const LogoBanner = (props: LogoBannerProps) => {
               >
                 <img
                   src={item.image}
+                  loading="lazy"
                   alt="logo"
                   className="w-[200px] h-[200px] object-contain"
                 />
@@ -143,6 +144,7 @@ export const LogoBanner = (props: LogoBannerProps) => {
                 src={item}
                 alt="logo"
                 className="w-[200px] h-[200px] object-contain"
+                loading="lazy"
               />
             ))}
       </div>

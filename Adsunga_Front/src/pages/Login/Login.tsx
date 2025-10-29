@@ -61,6 +61,7 @@ export const Login = () => {
             alt="Adunsga Logo"
             src="../../src/assets/icons/drone-noir.png"
             className="mx-auto h-15 w-auto"
+            loading="lazy"
           />
           <h2 className="mt-5 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
             Connexion à votre compte

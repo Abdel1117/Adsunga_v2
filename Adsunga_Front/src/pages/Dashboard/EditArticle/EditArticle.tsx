@@ -524,6 +524,7 @@ export const EditArticle = () => {
                   }
                   alt="Preview"
                   className="w-full h-auto rounded-lg mb-2"
+                  loading="lazy"
                 />
               </div>
             )}

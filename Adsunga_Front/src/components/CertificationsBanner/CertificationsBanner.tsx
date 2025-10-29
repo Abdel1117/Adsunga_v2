@@ -57,6 +57,9 @@ export const CertificationsBanner = () => {
         >
           <img
             className="w-[150] h-[150px]"
+            loading="lazy"
+            loading="lazy"
+            loading="lazy"
             src={QualiopiLogo}
             alt="Qualiopi Logo"
           />
@@ -71,6 +74,8 @@ export const CertificationsBanner = () => {
           <img
             className="w-[150px] h-[150px]"
             src={DgacLogo}
+            loading="lazy"
+            loading="lazy"
             alt="Telepilote Logo"
           />
           <p className="text-center mt-16 text-gray-600">
@@ -81,7 +86,12 @@ export const CertificationsBanner = () => {
           ref={thirdCard}
           className="opacity-0 col-span-1 md:col-span-2 lg:col-span-1  shadow-lg rounded-lg flex flex-col items-center p-10"
         >
-          <img className="w-[150px] h-[150px]" src={DgacLogo} alt="Dgac logo" />
+          <img
+            className="w-[150px] h-[150px]"
+            src={DgacLogo}
+            loading="lazy"
+            alt="Dgac logo"
+          />
           <p className="text-center mt-16 text-gray-600">
             Déclaration d'exploitant drone n° ED 18416 auprès de la DGAC
             (Direction de Général de l'Aviation Civil).

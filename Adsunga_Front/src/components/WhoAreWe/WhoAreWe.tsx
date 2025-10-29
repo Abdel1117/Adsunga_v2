@@ -52,6 +52,8 @@ export const WhoAreWe = () => {
           ref={imageRef}
           className="hidden md:block md:absolute lg:right-[0%] xl:right-[10%] 2xl:right-[16%] lg:-top-[20%] w-[500px] h-[400px]  clip-hexagon z-10"
           src={Drone}
+          loading="lazy"
+          alt="Drone de présentation"
         />
       </div>
     </section>

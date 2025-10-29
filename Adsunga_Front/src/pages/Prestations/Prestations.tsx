@@ -148,6 +148,7 @@ export const Prestations = () => {
                     src={image}
                     alt={`grid-image-${index}`}
                     className="w-full max-w-[100%] object-cover aspect-square rounded-lg"
+                    loading="lazy"
                   />
                 ))}
               </div>

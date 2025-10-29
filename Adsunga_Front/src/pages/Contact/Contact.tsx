@@ -282,6 +282,7 @@ export const Contact = () => {
               className="hidden md:block w-[200px] lg:w-[500px] h-[200px] lg:h-[500px] absolute top-[25%] left-[59%] rotate-[27deg] opacity-60"
               src={Phone}
               alt="Telephone Bleu"
+              loading="lazy"
             />
             {success /* If success is true */ && (
               <p className="w-full lg:w-[300px] xl:w-[400px] static lg:absolute lg:left-[65%] xl:left-[70%] bottom-1 text-primary text-xl lg:text-2xl font-bold text-center lg:text-left ">
