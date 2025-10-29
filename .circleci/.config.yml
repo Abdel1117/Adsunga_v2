@@ -1,0 +1,77 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@5.1.0
+
+jobs:
+  launch_back_end:
+    docker:
+      - image: cimg/node:20
+    working_directory: ~/Adsunga_v2
+    steps:
+      - checkout  # Pas besoin de git pull
+      
+      - node/with-cache:
+          cache-key: "backend-{{ checksum "Adsunga_Back/package-lock.json" }}"
+          dir: ~/Adsunga_v2/Adsunga_Back/node_modules
+          steps:
+            - run:
+                name: Installation des dépendances backend
+                command: |
+                  cd Adsunga_Back
+                  npm ci --legacy-peer-deps
+      
+      - run:
+          name: Redémarrage PM2 backend
+          command: |
+            cd Adsunga_Back
+            # Reload sans interruption si l'app existe, sinon start
+            pm2 reload "adsunga-backend" || pm2 start npm --name "adsunga-backend" -- start
+            pm2 save
+            pm2 list
+
+  build_front_end:
+    docker:
+      - image: cimg/node:20
+    working_directory: ~/Adsunga_v2
+    steps:
+      - checkout
+      
+      - node/with-cache:
+          cache-key: "frontend-{{ checksum "Adsunga_Front/package-lock.json" }}"
+          dir: ~/Adsunga_v2/Adsunga_Front/node_modules
+          steps:
+            - run:
+                name: Installation des dépendances frontend
+                command: |
+                  cd Adsunga_Front
+                  npm ci --legacy-peer-deps
+      
+      - run:
+          name: Build de l'application
+          command: |
+            cd Adsunga_Front
+            npm run build
+            
+      - run:
+          name: Déploiement frontend
+          command: |
+            # Backup de l'ancien build (optionnel)
+            sudo cp -r /var/www/html /var/www/html.backup.$(date +%Y%m%d_%H%M%S) 2>/dev/null || true
+            
+            # Déploiement du nouveau build
+            sudo rm -rf /var/www/html/*
+            sudo cp -r ~/Adsunga_v2/Adsunga_Front/dist/* /var/www/html/
+            
+            # Permissions correctes
+            sudo chown -R www-data:www-data /var/www/html
+            sudo chmod -R 755 /var/www/html
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - launch_back_end
+      - build_front_end:
+          requires:
+            - launch_back_end 
