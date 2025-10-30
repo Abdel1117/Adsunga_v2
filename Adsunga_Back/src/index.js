@@ -20,7 +20,7 @@ app.use(express.urlencoded({ limit: "100mb", extended: true }));
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors("*"));
 
 
 app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
@@ -34,4 +34,4 @@ app.use('/api/articles', articlesRoutes);
 app.use("*", (req, res)=>{
     console.log("Hello from Adsunga Back");
 })
-app.listen(PORT, () => console.log(`Serveur démarré ssur http://localhost:${PORT}`));
+app.listen(PORT,"0.0.0.0", () => console.log(`Serveur démarré sur http://localhost:${PORT}`));
