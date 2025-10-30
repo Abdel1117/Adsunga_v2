@@ -9,7 +9,7 @@ jobs:
       - run:
           name: Déploiement complet sur VPS
           command: |
-            ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_IP << 'EOF'
+            ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_IP \<< 'EOF'
               echo "🚀 Déploiement Adsunga complet..."
               cd ~/Adsunga_v2
               git pull origin main
