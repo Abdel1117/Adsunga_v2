@@ -1,64 +1,44 @@
 version: 2.1
 
-orbs:
-  node: circleci/node@5.1.0
-
 jobs:
-  launch_back_end:
+  deploy_all:
     docker:
-      - image: cimg/node:18.18.0
-    working_directory: ~/Adsunga_v2
+      - image: cimg/base:stable
     steps:
-      - checkout
-      
-      - node/install-packages:
-          pkg-manager: npm
-          app-dir: ~/Adsunga_v2/Adsunga_Back
-          cache-path: ~/Adsunga_v2/Adsunga_Back/node_modules
-          override-ci-command: npm ci --legacy-peer-deps
-      
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:votre_empreinte_ssh"
       - run:
-          name: Redémarrage PM2 backend
+          name: Déploiement complet sur VPS
           command: |
-            cd Adsunga_Back
-            pm2 reload "adsunga-backend" || pm2 start npm --name "adsunga-backend" -- start
-            pm2 save
-            pm2 list
-
-  build_front_end:
-    docker:
-      - image: cimg/node:18.18.0
-    working_directory: ~/Adsunga_v2
-    steps:  # ✅ Correctement indenté maintenant
-      - checkout
-      
-      - node/install-packages:
-          pkg-manager: npm
-          app-dir: ~/Adsunga_v2/Adsunga_Front
-          cache-path: ~/Adsunga_v2/Adsunga_Front/node_modules
-          override-ci-command: npm ci --legacy-peer-deps
-      
-      - run:
-          name: Build de l'application
-          command: |
-            cd Adsunga_Front
-            npm run build
-            
-      - run:
-          name: Déploiement frontend
-          command: |
-            sudo mkdir -p /var/www/html
-            sudo cp -r /var/www/html /var/www/html.backup.$(date +%Y%m%d_%H%M%S) 2>/dev/null || true
-            sudo rm -rf /var/www/html/*
-            sudo cp -r ~/Adsunga_v2/Adsunga_Front/dist/* /var/www/html/
-            sudo chown -R www-data:www-data /var/www/html
-            sudo chmod -R 755 /var/www/html
+            ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_IP << 'EOF'
+              echo "🚀 Déploiement Adsunga complet..."
+              cd ~/Adsunga_v2
+              git pull origin main
+              
+              # Backend
+              echo "🔧 Backend..."
+              cd Adsunga_Back
+              npm ci --legacy-peer-deps
+              pm2 reload "adsunga-backend" || pm2 start npm --name "adsunga-backend" -- start
+              pm2 save
+              
+              # Frontend  
+              echo "🎨 Frontend..."
+              cd ../Adsunga_Front
+              npm ci --legacy-peer-deps
+              npm run build
+              sudo cp -r dist/* /var/www/html/
+              sudo chown -R www-data:www-data /var/www/html
+              
+              echo "✅ Déploiement terminé !"
+            EOF
 
 workflows:
   version: 2
-  build-and-deploy:
+  deploy:
     jobs:
-      - launch_back_end
-      - build_front_end:
-          requires:
-            - launch_back_end
+      - deploy_all:
+          filters:
+            branches:
+              only: dev

@@ -18,7 +18,7 @@ export const Header = () => {
           <div className="flex lg:space-x-4">
             <div>
               <a
-                href="#"
+                onClick={() => navigate("/")}
                 className="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900"
               >
                 <img src={Logo} alt="Logo Adsunga" className="w-12 h-12" />
@@ -124,11 +124,11 @@ export const Header = () => {
         </a>
         <a
           onClick={() => {
-            navigate("/realisaation");
+            navigate("/realisation");
           }}
           className="block py-2 px-4 text-sm hover:bg-gray-200 cursor-pointer hover:underline text-center"
         >
-          Realisaation
+          Realisation
         </a>
         <a
           onClick={() => {
