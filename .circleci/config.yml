@@ -5,9 +5,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "SHA256:votre_empreinte_ssh"
+      # Pas de add_ssh_keys si ça marche déjà pour War House
       - run:
           name: Déploiement complet sur VPS
           command: |
