@@ -33,12 +33,7 @@ export const Header = () => {
               >
                 Accueil
               </a>
-              <a
-                onClick={() => navigate("/")}
-                className="mr-1 md:mr-2 xl:mr-6 xxl:mr-12 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer hover:underline"
-              >
-                Test
-              </a>
+
               <a
                 onClick={() => navigate("/prestations")}
                 className="mr-1 md:mr-2 xl:mr-6 xxl:mr-14 mt-1 px-1 lg:px-3 text-xs  lg:text-base text-gray-700 hover:text-gray-900 cursor-pointer hover:underline"
