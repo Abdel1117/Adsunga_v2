@@ -12,7 +12,7 @@ jobs:
             ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_IP \<< 'EOF'
               echo "🚀 Déploiement Adsunga complet..."
               cd ~/Adsunga_v2
-              git pull origin main
+              git pull origin dev
               
               # Backend
               echo "🔧 Backend..."
