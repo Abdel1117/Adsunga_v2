@@ -25,7 +25,7 @@ export const checkToken = async (): Promise<Response> => {
   try {
     const token = sessionStorage.getItem("token");
     if (token !== null) {
-      const response = await fetch(`${apiUrl}/api/token/check`, {
+      const response = await fetch(`${apiUrl}/token/check`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

@@ -136,7 +136,7 @@ export const AjoutArticle = () => {
         formData.append("image", image);
       }
 
-      const response = await fetch(`${API_URL}/api/articles/createArticle`, {
+      const response = await fetch(`${API_URL}/articles/createArticle`, {
         method: "POST",
         body: formData,
       });
