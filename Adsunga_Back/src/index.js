@@ -24,7 +24,7 @@ app.use(cors("*"));
 
 
 app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
-app.use('/uploads', express.static('uploads')); // Pour servir les fichiers statiques (images, etc.)
+app.use('/api/uploads', express.static('uploads')); // Pour servir les fichiers statiques (images, etc.)
 // Routes
 app.use("/api/contact", contactRoutes);
 app.use("/api/devis", devisRoutes)
