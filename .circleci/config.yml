@@ -1,0 +1,42 @@
+version: 2.1
+
+jobs:
+  deploy_all:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      # Pas de add_ssh_keys si ça marche déjà pour War House
+      - run:
+          name: Déploiement complet sur VPS
+          command: |
+            ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_IP \<< 'EOF'
+              echo "🚀 Déploiement Adsunga complet..."
+              cd ~/Adsunga_v2
+              git pull origin dev
+              
+              # Backend
+              echo "🔧 Backend..."
+              cd Adsunga_Back
+              npm ci --legacy-peer-deps
+              pm2 reload "adsunga-backend" || pm2 start npm --name "adsunga-backend" -- start
+              pm2 save
+              
+              # Frontend  
+              echo "🎨 Frontend..."
+              cd ../Adsunga_Front
+              npm ci --legacy-peer-deps
+              npm run build
+              sudo cp -r dist/* /var/www/html/
+              sudo chown -R www-data:www-data /var/www/html
+              
+              echo "✅ Déploiement terminé !"
+            EOF
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - deploy_all:
+          filters:
+            branches:
+              only: dev
