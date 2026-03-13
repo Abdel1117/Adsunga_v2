@@ -20,10 +20,10 @@ export const Dashboard = () => {
   /* Function to delete an article */
   const handleDeleteArticle = async (
     articleId: number,
-    articleTitle: string
+    articleTitle: string,
   ) => {
     const confirmDelete = window.confirm(
-      `Êtes-vous sûr de vouloir supprimer l'article ${articleTitle} ? Cette action est irréversible.`
+      `Êtes-vous sûr de vouloir supprimer l'article ${articleTitle} ? Cette action est irréversible.`,
     );
     if (!confirmDelete) {
       return; // User cancelled the deletion
@@ -31,37 +31,37 @@ export const Dashboard = () => {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `${API_URL}/articles/deleteArticle/${articleId}`,
+        `${API_URL}/api/articles/deleteArticle/${articleId}`,
         {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           method: "DELETE",
-        }
+        },
       );
       if (!response.ok) {
         toast.error(
-          "Une erreur s'est produite lors de la suppression de l'article."
+          "Une erreur s'est produite lors de la suppression de l'article.",
         );
         console.error("Failed to delete article:", response.statusText);
 
         throw new Error(
-          "Une erreur s'est produite lors de la suppression de l'article."
+          "Une erreur s'est produite lors de la suppression de l'article.",
         );
       }
       // Remove the deleted article from the state
       setArticles((prevArticles) =>
-        prevArticles.filter((article: Article) => article._id !== articleId)
+        prevArticles.filter((article: Article) => article._id !== articleId),
       );
       toast.info("Article supprimé avec succès !");
     } catch (error) {
       console.error("Failed to delete article:", error);
       toast.error(
-        "Une erreur s'est produite lors de la suppression de l'article."
+        "Une erreur s'est produite lors de la suppression de l'article.",
       );
       setError(
-        "Une erreur s'est produite lors de la suppression de l'article."
+        "Une erreur s'est produite lors de la suppression de l'article.",
       );
     } finally {
       setIsLoading(false);
@@ -74,7 +74,7 @@ export const Dashboard = () => {
   /* Function to handle modification of article */
   const handleEditArticle = (articleId: number, articleTitle: string) => {
     const confirmEdit = window.confirm(
-      `Êtes-vous sûr de vouloir modifier l'article ${articleTitle} ?`
+      `Êtes-vous sûr de vouloir modifier l'article ${articleTitle} ?`,
     );
     if (!confirmEdit) {
       return; // User cancelled the modification
@@ -87,10 +87,10 @@ export const Dashboard = () => {
   const getArticle = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch(`${API_URL}/articles/getAllArticles`);
+      const response = await fetch(`${API_URL}/api/articles/getAllArticles`);
       if (!response.ok) {
         throw new Error(
-          "Une erreur s'est produite lors de la récupération des articles."
+          "Une erreur s'est produite lors de la récupération des articles.",
         );
       }
       const data = await response.json();
@@ -155,7 +155,7 @@ export const Dashboard = () => {
                   {article.title}
                 </h1>
                 <img
-                  src={`${API_URL}/uploads/${article.image}`}
+                  src={`${API_URL}/api/uploads/${article.image}`}
                   alt={article.title}
                   className="w-full h-48 object-contain rounded-lg mb-2"
                   loading="lazy"

@@ -84,10 +84,10 @@ export const EditArticle = () => {
     }
     if (!categorySelected) {
       toast.error(
-        "La catégorie de l'article est invalide. Veuillez la corriger."
+        "La catégorie de l'article est invalide. Veuillez la corriger.",
       );
       setCategoryError(
-        "La catégorie de l'article est invalide. Veuillez la corriger"
+        "La catégorie de l'article est invalide. Veuillez la corriger",
       );
       hastError = true;
     }
@@ -99,10 +99,10 @@ export const EditArticle = () => {
     if (!content || !regexContent(content)) {
       console.log(content);
       toast.error(
-        "Le contenu de l'article est invalide. Veuillez le corriger."
+        "Le contenu de l'article est invalide. Veuillez le corriger.",
       );
       setErrorContent(
-        "Le contenu de l'article est invalide. Veuillez le corriger"
+        "Le contenu de l'article est invalide. Veuillez le corriger",
       );
       hastError = true;
     }
@@ -137,10 +137,13 @@ export const EditArticle = () => {
         formData.append("image", image);
       }
       console.log(formData);
-      const response = await fetch(`${API_URL}/articles//updateArticle/${id}`, {
-        method: "PUT",
-        body: formData,
-      });
+      const response = await fetch(
+        `${API_URL}/api/articles//updateArticle/${id}`,
+        {
+          method: "PUT",
+          body: formData,
+        },
+      );
 
       if (!response.ok) {
         toast.error("Échec de la mise à jour de l'article");
@@ -152,7 +155,7 @@ export const EditArticle = () => {
     } catch (error) {
       console.error("Error adding article:", error);
       toast.error(
-        "Une erreur s'est produite lors de la mise à jour de l'article"
+        "Une erreur s'est produite lors de la mise à jour de l'article",
       );
     } finally {
       setIsLoading(false);
@@ -429,7 +432,7 @@ export const EditArticle = () => {
       try {
         setIsLoading(true);
         const response = await fetch(
-          `${API_URL}/articles/getArticleById/${id}`
+          `${API_URL}/api/articles/getArticleById/${id}`,
         );
         if (!response.ok) {
           toast.error("Échec de la récupération de l'article");
@@ -517,7 +520,7 @@ export const EditArticle = () => {
                   src={
                     image instanceof File
                       ? URL.createObjectURL(image)
-                      : `${API_URL}/uploads/${image}`
+                      : `${API_URL}/api/uploads/${image}`
                   }
                   alt="Preview"
                   className="w-full h-auto rounded-lg mb-2"

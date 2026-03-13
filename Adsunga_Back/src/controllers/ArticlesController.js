@@ -17,7 +17,6 @@ exports.getRecentArticles = async (req, res) => {
     try {
         let limit = parseInt(req.params.limit) || 3;
         let from = parseInt(req.params.from) || 0;
-        console.log(from, limit);
         if (isNaN(limit) || isNaN(from)) {
             return res.status(400).json({ message: "Paramètres de requête invalides" });
         }

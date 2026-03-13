@@ -22,7 +22,7 @@ export const BlockArticle = ({
   const API_URL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const safeContent = DOMPurify.sanitize(
-    content.replace(/<img[^>]*>/g, "").substring(0, 700) + "..."
+    content.replace(/<img[^>]*>/g, "").substring(0, 700) + "...",
   );
   return (
     <article className="w-full  grid grid-cols-1 md:grid-cols-2 gap-10 mb-10 p-4 bg-white rounded-lg shadow">
@@ -106,7 +106,7 @@ export const BlockArticle = ({
       </div>
       <div className={`grid order-2 gap-4 "grid-cols-1`}>
         <img
-          src={`${API_URL}/uploads/${images}`}
+          src={`${API_URL}/api/uploads/${images}`}
           loading="lazy"
           alt={"image de l'article"}
           className="w-full max-h-full h-[350px] object-contain rounded my-auto "

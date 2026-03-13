@@ -24,7 +24,7 @@ export const Card = ({
   // Ensure the imageSrc is sanitized and safe to use
   const sanitizedImageSrc = DOMPurify.sanitize(imageSrc);
   const safeContent = DOMPurify.sanitize(
-    descriptionArticle.replace(/<img[^>]*>/g, "").substring(0, 200) + "..."
+    descriptionArticle.replace(/<img[^>]*>/g, "").substring(0, 200) + "...",
   );
   const timeStamp = new Date(date).toLocaleDateString("fr-FR", {
     day: "numeric",
@@ -36,7 +36,7 @@ export const Card = ({
       <a href="#">
         <img
           className="rounded-t-lg w-full h-[200px] object-contain"
-          src={`${API_URL}/uploads/${sanitizedImageSrc}`}
+          src={`${API_URL}/api/uploads/${sanitizedImageSrc}`}
           loading="lazy"
           alt={alternativeText}
         />

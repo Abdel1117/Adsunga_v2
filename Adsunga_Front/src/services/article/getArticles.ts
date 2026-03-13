@@ -14,7 +14,7 @@ import { Articles } from "../../types/ArticlesType";
 export const getAllArticles = async (): Promise<Articles[]> => {
   const API_URL = import.meta.env.VITE_API_URL;
   try {
-    const response = await fetch(`${API_URL}/articles/getAllArticles`);
+    const response = await fetch(`${API_URL}/api/articles/getAllArticles`);
     if (!response.ok) {
       throw new Error("Une erreur s'est produite lors de la récupération des articles .");
     }

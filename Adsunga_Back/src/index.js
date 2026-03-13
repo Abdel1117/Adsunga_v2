@@ -31,7 +31,5 @@ app.use("/api/devis", devisRoutes)
 app.use('/api/login', loginRoutes);
 app.use("/api/token", tokenRoutes)
 app.use('/api/articles', articlesRoutes);
-app.use("*", (req, res)=>{
-    console.log("Hello from Adsunga Back");
-})
+
 app.listen(PORT,"0.0.0.0", () => console.log(`Serveur démarré sur http://localhost:${PORT}`));

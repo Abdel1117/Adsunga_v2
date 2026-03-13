@@ -82,10 +82,10 @@ export const AjoutArticle = () => {
     }
     if (!categorySelected) {
       toast.error(
-        "La catégorie de l'article est invalide. Veuillez la corriger."
+        "La catégorie de l'article est invalide. Veuillez la corriger.",
       );
       setCategoryError(
-        "La catégorie de l'article est invalide. Veuillez la corriger"
+        "La catégorie de l'article est invalide. Veuillez la corriger",
       );
       hastError = true;
     }
@@ -97,10 +97,10 @@ export const AjoutArticle = () => {
     if (!content || !regexContent(content)) {
       console.log(content);
       toast.error(
-        "Le contenu de l'article est invalide. Veuillez le corriger."
+        "Le contenu de l'article est invalide. Veuillez le corriger.",
       );
       setErrorContent(
-        "Le contenu de l'article est invalide. Veuillez le corriger"
+        "Le contenu de l'article est invalide. Veuillez le corriger",
       );
       hastError = true;
     }
@@ -136,7 +136,7 @@ export const AjoutArticle = () => {
         formData.append("image", image);
       }
 
-      const response = await fetch(`${API_URL}/articles/createArticle`, {
+      const response = await fetch(`${API_URL}/api/articles/createArticle`, {
         method: "POST",
         body: formData,
       });
@@ -483,7 +483,7 @@ export const AjoutArticle = () => {
                   src={
                     image instanceof File
                       ? URL.createObjectURL(image)
-                      : `${API_URL}/uploads/${image}`
+                      : `${API_URL}/api/uploads/${image}`
                   }
                   alt="Preview"
                   className="w-full h-auto rounded-lg mb-2"

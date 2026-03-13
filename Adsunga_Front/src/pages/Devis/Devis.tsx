@@ -129,7 +129,7 @@ export const Devis = () => {
 
     try {
       setLoading(true);
-      const response = await fetch(`${API_URL}/devis/devis`, {
+      const response = await fetch(`${API_URL}/api/devis/devis`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -147,7 +147,7 @@ export const Devis = () => {
     } catch (error) {
       console.error("Error:", error);
       alert(
-        "Une erreur s'est produite lors de l'envoi du formulaire. Veuillez réessayer plus tard."
+        "Une erreur s'est produite lors de l'envoi du formulaire. Veuillez réessayer plus tard.",
       );
     } finally {
       setLoading(false);
@@ -207,7 +207,7 @@ export const Devis = () => {
                         e,
                         setNameError,
                         nameAndPrenomRegex,
-                        "Le nom ne doit pas contenir de caractères spéciaux ou de chiffres"
+                        "Le nom ne doit pas contenir de caractères spéciaux ou de chiffres",
                       )
                     }
                   />
@@ -227,7 +227,7 @@ export const Devis = () => {
                         e,
                         setPrenomError,
                         nameAndPrenomRegex,
-                        "Le prénom ne doit pas contenir de caractères spéciaux ou de chiffres"
+                        "Le prénom ne doit pas contenir de caractères spéciaux ou de chiffres",
                       )
                     }
                   />
@@ -249,7 +249,7 @@ export const Devis = () => {
                         e,
                         setEntrepriseError,
                         null,
-                        "N/A"
+                        "N/A",
                       )
                     }
                   />
@@ -268,7 +268,7 @@ export const Devis = () => {
                         e,
                         setEmailError,
                         emailRegex,
-                        "Veuillez entrer une adresse email valide"
+                        "Veuillez entrer une adresse email valide",
                       )
                     }
                   />
@@ -287,7 +287,7 @@ export const Devis = () => {
                         e,
                         setPhoneError,
                         phoneRegex,
-                        "Veuillez entrer un numéro de téléphone valide"
+                        "Veuillez entrer un numéro de téléphone valide",
                       )
                     }
                   />
@@ -362,7 +362,7 @@ export const Devis = () => {
                         e,
                         setLocalisationError,
                         null,
-                        "N/A"
+                        "N/A",
                       )
                     }
                   />
@@ -397,7 +397,7 @@ export const Devis = () => {
                         e,
                         setTailleError,
                         tailleRegex,
-                        "Veuillez entrer uniquement des chiffres"
+                        "Veuillez entrer uniquement des chiffres",
                       )
                     }
                   />

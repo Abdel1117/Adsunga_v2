@@ -75,7 +75,7 @@ export const Contact = () => {
     ) {
       try {
         setLoading(true);
-        const response = await fetch(`${API_URL}/contact/contact`, {
+        const response = await fetch(`${API_URL}/api/contact/contact`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -89,7 +89,7 @@ export const Contact = () => {
       } catch (error) {
         console.error("Error:", error);
         alert(
-          "Une erreur s'est produite lors de l'envoi du formulaire. Veuillez réessayer plus tard."
+          "Une erreur s'est produite lors de l'envoi du formulaire. Veuillez réessayer plus tard.",
         );
       } finally {
         setLoading(false);
@@ -112,7 +112,7 @@ export const Contact = () => {
     e: React.FocusEvent<HTMLInputElement>,
     setter: React.Dispatch<React.SetStateAction<string>>,
     regex: RegExp | null = null,
-    errorMessage: string
+    errorMessage: string,
   ) => {
     setter("");
     const value = e.target.value.trim();
@@ -168,7 +168,7 @@ export const Contact = () => {
                         e,
                         setNameError,
                         nameAndPrenomRegex,
-                        "Le nom ne doit pas contenir de caractères spéciaux ou de chiffres"
+                        "Le nom ne doit pas contenir de caractères spéciaux ou de chiffres",
                       );
                     }}
                   />
@@ -188,7 +188,7 @@ export const Contact = () => {
                         e,
                         setPrenomError,
                         nameAndPrenomRegex,
-                        "Le nom ne doit pas contenir de caractères spéciaux ou de chiffres"
+                        "Le nom ne doit pas contenir de caractères spéciaux ou de chiffres",
                       );
                     }}
                   />
@@ -211,7 +211,7 @@ export const Contact = () => {
                         e,
                         setEntrepriseError,
                         null,
-                        "N/A"
+                        "N/A",
                       );
                     }}
                   />
@@ -230,7 +230,7 @@ export const Contact = () => {
                         e,
                         setEmailError,
                         emailRegex,
-                        "Veuillez entrer une adresse email valide"
+                        "Veuillez entrer une adresse email valide",
                       );
                     }}
                   />
@@ -250,7 +250,7 @@ export const Contact = () => {
                         e,
                         setPhoneError,
                         phoneRegex,
-                        "Veuillez entrer un numéro de téléphone valide ex (06 06 06 06 06)"
+                        "Veuillez entrer un numéro de téléphone valide ex (06 06 06 06 06)",
                       );
                     }}
                   />

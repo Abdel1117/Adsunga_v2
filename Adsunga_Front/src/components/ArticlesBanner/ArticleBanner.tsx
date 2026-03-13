@@ -37,7 +37,7 @@ export const ArticleBanner = ({ from, limit }: ArticleBannerProps) => {
       <Swiper
         slidesPerView={3}
         breakpoints={{
-          640: {
+          0: {
             slidesPerView: 1,
             spaceBetween: 20,
           },
