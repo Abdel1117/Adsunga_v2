@@ -36,7 +36,7 @@ export const Card = ({
       <a href="#">
         <img
           className="rounded-t-lg w-full h-[200px] object-contain"
-          src={`${API_URL}/api/uploads/${sanitizedImageSrc}`}
+          src={`${API_URL}/uploads/${sanitizedImageSrc}`}
           loading="lazy"
           alt={alternativeText}
         />

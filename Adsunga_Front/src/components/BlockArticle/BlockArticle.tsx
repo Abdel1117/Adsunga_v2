@@ -106,7 +106,7 @@ export const BlockArticle = ({
       </div>
       <div className={`grid order-2 gap-4 "grid-cols-1`}>
         <img
-          src={`${API_URL}/api/uploads/${images}`}
+          src={`${API_URL}/uploads/${images}`}
           loading="lazy"
           alt={"image de l'article"}
           className="w-full max-h-full h-[350px] object-contain rounded my-auto "

@@ -137,13 +137,10 @@ export const EditArticle = () => {
         formData.append("image", image);
       }
       console.log(formData);
-      const response = await fetch(
-        `${API_URL}/api/articles//updateArticle/${id}`,
-        {
-          method: "PUT",
-          body: formData,
-        },
-      );
+      const response = await fetch(`${API_URL}/articles//updateArticle/${id}`, {
+        method: "PUT",
+        body: formData,
+      });
 
       if (!response.ok) {
         toast.error("Échec de la mise à jour de l'article");
@@ -432,7 +429,7 @@ export const EditArticle = () => {
       try {
         setIsLoading(true);
         const response = await fetch(
-          `${API_URL}/api/articles/getArticleById/${id}`,
+          `${API_URL}/articles/getArticleById/${id}`,
         );
         if (!response.ok) {
           toast.error("Échec de la récupération de l'article");
@@ -520,7 +517,7 @@ export const EditArticle = () => {
                   src={
                     image instanceof File
                       ? URL.createObjectURL(image)
-                      : `${API_URL}/api/uploads/${image}`
+                      : `${API_URL}/uploads/${image}`
                   }
                   alt="Preview"
                   className="w-full h-auto rounded-lg mb-2"

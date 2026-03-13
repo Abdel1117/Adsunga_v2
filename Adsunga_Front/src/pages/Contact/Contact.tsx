@@ -75,7 +75,7 @@ export const Contact = () => {
     ) {
       try {
         setLoading(true);
-        const response = await fetch(`${API_URL}/api/contact/contact`, {
+        const response = await fetch(`${API_URL}/contact/contact`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

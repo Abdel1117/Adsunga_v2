@@ -31,7 +31,7 @@ export const Dashboard = () => {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `${API_URL}/api/articles/deleteArticle/${articleId}`,
+        `${API_URL}/articles/deleteArticle/${articleId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -87,7 +87,7 @@ export const Dashboard = () => {
   const getArticle = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch(`${API_URL}/api/articles/getAllArticles`);
+      const response = await fetch(`${API_URL}/articles/getAllArticles`);
       if (!response.ok) {
         throw new Error(
           "Une erreur s'est produite lors de la récupération des articles.",
@@ -155,7 +155,7 @@ export const Dashboard = () => {
                   {article.title}
                 </h1>
                 <img
-                  src={`${API_URL}/api/uploads/${article.image}`}
+                  src={`${API_URL}/uploads/${article.image}`}
                   alt={article.title}
                   className="w-full h-48 object-contain rounded-lg mb-2"
                   loading="lazy"

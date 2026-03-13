@@ -21,7 +21,7 @@ export const Article = () => {
     const fetchArticle = async (id: number): Promise<void> => {
       try {
         const response = await fetch(
-          `${API_URL}/api/articles/getArticleById/${id}`,
+          `${API_URL}/articles/getArticleById/${id}`,
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");

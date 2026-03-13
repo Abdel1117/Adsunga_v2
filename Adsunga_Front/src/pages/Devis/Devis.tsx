@@ -129,7 +129,7 @@ export const Devis = () => {
 
     try {
       setLoading(true);
-      const response = await fetch(`${API_URL}/api/devis/devis`, {
+      const response = await fetch(`${API_URL}/devis/devis`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

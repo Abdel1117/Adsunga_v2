@@ -136,7 +136,7 @@ export const AjoutArticle = () => {
         formData.append("image", image);
       }
 
-      const response = await fetch(`${API_URL}/api/articles/createArticle`, {
+      const response = await fetch(`${API_URL}/articles/createArticle`, {
         method: "POST",
         body: formData,
       });
@@ -483,7 +483,7 @@ export const AjoutArticle = () => {
                   src={
                     image instanceof File
                       ? URL.createObjectURL(image)
-                      : `${API_URL}/api/uploads/${image}`
+                      : `${API_URL}/uploads/${image}`
                   }
                   alt="Preview"
                   className="w-full h-auto rounded-lg mb-2"
